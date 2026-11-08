@@ -49,7 +49,43 @@
   footer a{color:var(--accent)}
   .contact-list{list-style:none}
   .contact-list li{margin-bottom:6px}
+  .offer{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:10px;padding:18px}
+  .offer p{color:var(--muted);font-size:.95rem;margin-bottom:12px}
+  .offer .price{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:.92rem;border-radius:6px;padding:5px 10px}
+  .intl-note{margin-top:14px;color:var(--muted);font-size:.95rem}
+  .trust{margin-top:18px;background:var(--accent-soft);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-align:center;font-weight:600;font-size:.97rem}
+  .small-note{color:var(--muted);font-size:.86rem;margin-top:6px}
+  .stepper-nav{display:none}
+  html.js .stepper-nav{display:flex;align-items:center;gap:14px;margin:14px 0 4px;flex-wrap:wrap}
+  .stepper-nav button.navbtn{padding:8px 16px;border:1px solid var(--accent);border-radius:6px;background:#fff;color:var(--accent);font-weight:600;font-size:.95rem;cursor:pointer}
+  .stepper-nav button.navbtn:hover{background:var(--accent-soft)}
+  .stepper-nav button.navbtn:disabled{opacity:.4;cursor:default}
+  .step-label{font-weight:700;font-size:.95rem}
+  .dots{display:inline-flex;gap:7px}
+  .dots .dot{width:11px;height:11px;border-radius:50%;border:1px solid var(--accent);background:#fff;padding:0;cursor:pointer}
+  .dots .dot.on{background:var(--accent)}
+  .fixcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:18px}
+  html.js .fixcard{display:none}
+  html.js .fixcard.active{display:block}
+  .fixcard h3{margin-bottom:12px}
+  .fx-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:1rem}
+  .fx-k{flex:0 0 64px;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding-top:3px}
+  .fx-before .fx-k{color:#b03a2e}
+  .fx-after .fx-k{color:var(--accent)}
+  .fx-before .val{position:relative;color:var(--muted)}
+  .fx-before .val::after{content:"";position:absolute;left:0;top:55%;height:2px;width:100%;background:#b03a2e;transform:scaleX(0);transform-origin:left center}
+  .fixcard.play .fx-before .val::after{animation:strike .5s ease .1s forwards}
+  .fixcard.play .fx-after{animation:fadeup .5s ease .65s both}
+  .chip{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:600;font-size:.9rem;border-radius:6px;padding:5px 10px;margin-top:4px}
+  .counts{margin-top:14px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 16px;font-size:.97rem}
+  @keyframes strike{to{transform:scaleX(1)}}
+  @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    .fixcard.play .fx-before .val::after{animation:none;transform:scaleX(1)}
+    .fixcard.play .fx-after{animation:none}
+  }
 </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -57,7 +93,7 @@
   <div class="wrap">
     <h1>Mochammad Nur Fakhruddin</h1>
     <p class="role">Library Data Specialist — Cataloguing, Data Cleaning &amp; Web Research</p>
-    <p class="lede">I help libraries, schools, and businesses turn messy data into clean, structured, ready-to-use files: catalogues with subject headings and DDC classification, deduplicated spreadsheets, pivot recaps and dashboards, and B2B lead lists researched from public sources — every row traceable to its source.</p>
+    <p class="lede"><b>Messy spreadsheets, catalogs and lists in — clean, verified data out.</b> Catalogues with subject headings and DDC classification, deduplicated spreadsheets, pivot recaps and dashboards, and B2B lead lists researched from public sources — every row traceable to its source.</p>
     <p class="meta">B.Sc. in Library &amp; Information Science, UIN Maulana Malik Ibrahim Malang (2026, GPA 3.46) · Based in Malang, Indonesia · Working with clients locally and internationally</p>
     <div class="links">
       <a href="mailto:ongisnadefafa@gmail.com">Email me</a>
@@ -72,25 +108,78 @@
 
 <main class="wrap">
 
-  <section id="services">
-    <h2>Services</h2>
+  <section id="offers">
+    <h2>What I Offer — Everything Up Front</h2>
     <div class="grid">
-      <div class="svc">
-        <h3>Library Cataloguing &amp; DDC Classification</h3>
-        <p>Cataloguing and metadata clean-up for school and campus libraries: subject headings, DDC call numbers, deduplication, and SLiMS-ready data.</p>
+      <div class="offer">
+        <h3>Library Cataloguing &amp; DDC</h3>
+        <p>Your school or campus library catalogue, completed and cleaned: subject headings, DDC call numbers, duplicates merged, SLiMS-ready.</p>
+        <span class="price">from Rp149.000 / 100 titles</span>
       </div>
-      <div class="svc">
-        <h3>Excel / Sheets Data Cleaning</h3>
-        <p>Deduplication, format standardisation, fixing inconsistent names, dates and categories — delivered clean, with a QC report of what changed.</p>
+      <div class="offer">
+        <h3>Excel Data Cleaning &amp; Deduplication</h3>
+        <p>Your messy spreadsheet back as one clean file: duplicates removed, names, dates and formats standardised — with a QC report of every change.</p>
+        <span class="price">from Rp99.000</span>
       </div>
-      <div class="svc">
-        <h3>Recaps, Pivots &amp; Dashboards</h3>
-        <p>Raw tables turned into clear recaps, pivot summaries and simple dashboards your team can actually read and reuse.</p>
+      <div class="offer">
+        <h3>Recap, Pivot &amp; Dashboards</h3>
+        <p>Your raw table turned into recaps, pivot summaries and a simple dashboard your team can actually read and reuse.</p>
+        <span class="price">from Rp149.000</span>
       </div>
-      <div class="svc">
-        <h3>Web Research &amp; B2B Lead Lists</h3>
-        <p>Structured lead lists built only from public data. Every row carries its source URL so you can verify each record yourself.</p>
+      <div class="offer">
+        <h3>Web Research &amp; Lead Lists</h3>
+        <p>A structured B2B lead list built only from public data — every row verified and carrying its source URL, so you can check each record yourself.</p>
+        <span class="price">free 25-row sample first, then a fixed quote</span>
       </div>
+    </div>
+    <p class="intl-note">International clients: from $10/hour or a fixed project quote.</p>
+    <div class="trust">Free 25-row sample &nbsp;·&nbsp; Fixed price before we start &nbsp;·&nbsp; QC report with every delivery &nbsp;·&nbsp; Reply within 24 hours</div>
+  </section>
+
+  <section id="walkthrough">
+    <h2>See Exactly What Changes</h2>
+    <p class="small-note">Illustrative rows — transformations from real projects.</p>
+    <div class="stepper-nav">
+      <button type="button" class="navbtn" id="prevBtn">&larr; Prev</button>
+      <span class="step-label" id="stepLabel">Fix 1 of 5</span>
+      <span class="dots" id="stepDots"></span>
+      <button type="button" class="navbtn" id="nextBtn">Next &rarr;</button>
+    </div>
+    <div id="stepper">
+      <article class="fixcard">
+        <h3>Fix 1 — Author Names, Standardised</h3>
+        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Fakhruddin, Moch. N. (penulis)</span></div>
+        <div class="fx-row fx-after"><span class="fx-k">After</span><span>Fakhruddin, Mochammad Nur</span></div>
+        <span class="chip">✓ role labels removed, name standardized</span>
+      </article>
+      <article class="fixcard">
+        <h3>Fix 2 — Empty Subjects &amp; DDC, Completed</h3>
+        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Subject: — (empty) · DDC: —</span></div>
+        <div class="fx-row fx-after"><span class="fx-k">After</span><span>Subject: Library cataloguing · DDC filled</span></div>
+        <span class="chip">✓ 100% of 9,692 records completed</span>
+      </article>
+      <article class="fixcard">
+        <h3>Fix 3 — Duplicates, Merged</h3>
+        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Same title × 2 rows (1,653 pairs found)</span></div>
+        <div class="fx-row fx-after"><span class="fx-k">After</span><span>1 merged record — best copy kept</span></div>
+        <span class="chip">✓ duplicates resolved</span>
+      </article>
+      <article class="fixcard">
+        <h3>Fix 4 — Messy Text, Standardised (demo data)</h3>
+        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">jOHN&nbsp; doe — JOHN@GMAIL,COM</span></div>
+        <div class="fx-row fx-after"><span class="fx-k">After</span><span>John Doe — john@gmail.com</span></div>
+        <span class="chip">✓ case &amp; format standardized (demo data)</span>
+      </article>
+      <article class="fixcard">
+        <h3>Fix 5 — Lead Rows, Verified</h3>
+        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Business found — no source, no email check</span></div>
+        <div class="fx-row fx-after"><span class="fx-k">After</span><span>Business + public email + phone, source URL on the row</span></div>
+        <span class="chip">✓ verified against public sources</span>
+      </article>
+    </div>
+    <div class="counts">From the real catalog project: <b>9,692 records</b> read · <b>1,653 duplicate pairs</b> resolved · every change listed in the QC report — <b>nothing changes silently</b>.</div>
+    <div class="dl">
+      <a class="btn primary" href="#contact">Send me your file — start with a free 25-row sample</a>
     </div>
   </section>
 
@@ -219,6 +308,50 @@
   </section>
 
 </main>
+
+<script>
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.fixcard'));
+  if (cards.length < 2) return;
+  var i = 0, timer = null;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var label = document.getElementById('stepLabel');
+  var prev = document.getElementById('prevBtn');
+  var next = document.getElementById('nextBtn');
+  var dotsWrap = document.getElementById('stepDots');
+  var dots = cards.map(function (_, k) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'dot';
+    b.setAttribute('aria-label', 'Go to fix ' + (k + 1));
+    b.addEventListener('click', function () { stop(); show(k); });
+    dotsWrap.appendChild(b);
+    return b;
+  });
+  function show(n) {
+    i = Math.max(0, Math.min(cards.length - 1, n));
+    cards.forEach(function (c, k) { c.classList.toggle('active', k === i); });
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+    label.textContent = 'Fix ' + (i + 1) + ' of ' + cards.length;
+    prev.disabled = (i === 0);
+    next.disabled = (i === cards.length - 1);
+    var c = cards[i];
+    c.classList.remove('play'); void c.offsetWidth; c.classList.add('play');
+    if (i === cards.length - 1) stop();
+  }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  prev.addEventListener('click', function () { stop(); show(i - 1); });
+  next.addEventListener('click', function () { stop(); show(i + 1); });
+  var box = document.getElementById('stepper');
+  box.addEventListener('mouseenter', stop);
+  box.addEventListener('focusin', stop);
+  show(0);
+  if (!reduced) {
+    timer = setInterval(function () {
+      if (i < cards.length - 1) { show(i + 1); } else { stop(); }
+    }, 4500);
+  }
+})();
+</script>
 
 <footer>
   <div class="wrap">
