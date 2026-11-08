@@ -5,6 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mochammad Nur Fakhruddin — Library Data Specialist | Cataloguing, Data Cleaning, Lead Lists</title>
 <meta name="description" content="Freelance library data specialist based in Malang, Indonesia. Library cataloguing & DDC classification, Excel data cleaning and deduplication, pivot recaps and dashboards, web research & B2B lead lists from public data.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fafa1183.github.io/data-portfolio/">
+<meta property="og:title" content="Mochammad Nur Fakhruddin — Library Data Specialist | Cataloguing, Data Cleaning, Lead Lists">
+<meta property="og:description" content="Freelance library data specialist based in Malang, Indonesia. Library cataloguing & DDC classification, Excel data cleaning and deduplication, pivot recaps and dashboards, web research & B2B lead lists from public data.">
+<meta property="og:image" content="https://fafa1183.github.io/data-portfolio/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mochammad Nur Fakhruddin — Library Data Specialist | Cataloguing, Data Cleaning, Lead Lists">
+<meta name="twitter:description" content="Freelance library data specialist based in Malang, Indonesia. Library cataloguing & DDC classification, Excel data cleaning and deduplication, pivot recaps and dashboards, web research & B2B lead lists from public data.">
+<meta name="twitter:image" content="https://fafa1183.github.io/data-portfolio/og-image.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Mochammad Nur Fakhruddin \u2014 Library Data Specialist",
+  "url": "https://fafa1183.github.io/data-portfolio/",
+  "email": "mailto:ongisnadefafa@gmail.com",
+  "image": "https://fafa1183.github.io/data-portfolio/Foto_Profil.jpg",
+  "description": "Freelance library data specialist based in Malang, Indonesia. Library cataloguing & DDC classification, Excel data cleaning and deduplication, pivot recaps and dashboards, web research & B2B lead lists from public data, and PDF to Excel document conversion.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Malang",
+    "addressCountry": "ID"
+  },
+  "sameAs": [
+    "https://www.freelancer.com/u/nurfakhruddin",
+    "https://fastwork.id/user/v9phnd4s",
+    "https://projects.co.id/public/browse_users/view/564e70/mochammad-nur-fakhruddin",
+    "https://www.linkedin.com/in/mochammad-nur-fakhruddin-0166ba426/"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Data services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Library Cataloguing & DDC" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Excel Data Cleaning & Deduplication" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Recap, Pivot & Dashboards" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Research & Lead Lists" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PDF to Excel & Document Conversion" } }
+    ]
+  }
+}
+</script>
 <style>
   :root{color-scheme:light;--serif:"Playfair Display",Didot,"Bodoni MT",Georgia,"Times New Roman",serif;--ink:#1a2420;--muted:#5c665f;--accent:#0b3d33;--accent-soft:#eef0e6;--gold:#b08d3e;--gold-text:#85662a;--line:#e2dbc9;--card:#fffdf9;--bg:#faf8f3;--warn:#7a5c10;--warn-bg:#f7efda;--danger:#a93226;--on-accent:#f7f3e8}
   :root[data-theme="dark"]{color-scheme:dark;--ink:#ece8df;--muted:#a9b3ab;--accent:#8ec9ae;--accent-soft:#182420;--gold:#c9ab5e;--gold-text:#c9ab5e;--line:#27332c;--card:#141c19;--bg:#0c1210;--warn:#e6c65c;--warn-bg:#2e2a12;--danger:#e0685c;--on-accent:#f7f3e8}
@@ -112,6 +159,25 @@
   footer a{color:var(--accent)}
   .contact-list{list-style:none}
   .contact-list li{margin-bottom:9px}
+  .hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:44px;align-items:start}
+  @media(max-width:760px){.hero-grid{grid-template-columns:1fr}}
+  .portrait{margin:4px 0 0}
+  .portrait img{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;object-position:top center;background:#ffffff;padding:10px;border:1px solid var(--line)}
+  @media(max-width:760px){.portrait{max-width:260px}}
+  .offer.wide{grid-column:1/-1}
+  @media(min-width:641px){
+    .offer.wide{display:grid;grid-template-columns:auto 1fr auto;column-gap:30px;align-items:center}
+    .offer.wide .idx{margin-bottom:0}
+    .offer.wide p{margin-bottom:0}
+    .offer.wide .price{border-top:none;border-left:1px solid var(--gold);padding-top:0;padding-left:18px}
+  }
+  .faq-list{border-top:1px solid var(--line)}
+  details.faq{border-bottom:1px solid var(--line)}
+  details.faq summary{font-family:var(--serif);font-size:1.22rem;font-weight:600;line-height:1.3;cursor:pointer;list-style:none;position:relative;padding:18px 30px 18px 0}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::after{content:"+";position:absolute;right:2px;top:14px;font-family:var(--serif);font-size:1.35rem;font-weight:500;color:var(--gold)}
+  details.faq[open ] summary::after{content:"\2013"}
+  details.faq p{color:var(--muted);max-width:720px;padding:0 0 20px}
 </style>
 <script>
 document.documentElement.classList.add('js');
@@ -130,6 +196,8 @@ document.documentElement.classList.add('js');
       </div>
       <button type="button" id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙 Dark</button>
     </div>
+    <div class="hero-grid">
+      <div class="hero-main">
     <p class="byline">Mochammad Nur Fakhruddin</p>
     <p class="role" data-i18n="role">Library Data Specialist — Cataloguing, Data Cleaning &amp; Web Research</p>
     <h1 class="display" data-i18n="headline">Messy spreadsheets, catalogs and lists in — clean, verified data out.</h1>
@@ -141,6 +209,12 @@ document.documentElement.classList.add('js');
       <div class="hstat"><b>100%</b><span data-i18n="hstat3_label">records completed with subject headings &amp; DDC</span></div>
     </div>
     <p class="meta" data-i18n="meta">B.Sc. in Library &amp; Information Science, UIN Maulana Malik Ibrahim Malang (2026, GPA 3.46) · Based in Malang, Indonesia · Working with clients locally and internationally</p>
+      </div>
+      <figure class="portrait">
+        <img src="Foto_Profil.jpg" alt="Portrait of Mochammad Nur Fakhruddin" data-i18n-alt="hero_alt">
+        <figcaption data-i18n="hero_caption">Mochammad Nur Fakhruddin — Malang, Indonesia</figcaption>
+      </figure>
+    </div>
     <div class="links">
       <a class="cta" href="mailto:ongisnadefafa@gmail.com" data-i18n="email_me">Email me</a>
       <a href="https://www.freelancer.com/u/nurfakhruddin" target="_blank" rel="noopener">Freelancer</a>
@@ -181,6 +255,14 @@ document.documentElement.classList.add('js');
         <h3 data-i18n="offer4_name">Web Research &amp; Lead Lists</h3>
         <p data-i18n="offer4_desc">A structured B2B lead list built only from public data — every row verified and carrying its source URL, so you can check each record yourself.</p>
         <span class="price" data-i18n="offer4_price">free 25-row sample first, then a fixed quote</span>
+      </div>
+      <div class="offer wide">
+        <span class="idx">05</span>
+        <div class="wide-body">
+          <h3 data-i18n="offer5_name">PDF to Excel &amp; Document Conversion</h3>
+          <p data-i18n="offer5_desc">PDF tables and documents converted into clean, editable Excel or Word files — structure preserved, figures checked row by row against the source.</p>
+        </div>
+        <span class="price" data-i18n="offer5_price">free first-page sample, then a fixed quote</span>
       </div>
     </div>
     <p class="intl-note" data-i18n="intl_note">International clients: from $10/hour or a fixed project quote.</p>
@@ -339,8 +421,35 @@ document.documentElement.classList.add('js');
     <p style="margin-top:10px;color:var(--muted)" data-i18n="pricing_note">A small paid or sample-first start is welcome on larger jobs, so you can check quality before committing to the full dataset.</p>
   </section>
 
+  <section id="faq">
+    <p class="kicker" data-i18n="kicker_faq">06 — FAQ</p>
+    <h2 data-i18n="faq_h2">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details class="faq">
+        <summary data-i18n="faq1_q">How do we start?</summary>
+        <p data-i18n="faq1_a">Send your file or a description of the job by email. You first receive a free sample — 25 rows of your data, or the first page of your document — so you can judge the quality before paying anything.</p>
+      </details>
+      <details class="faq">
+        <summary data-i18n="faq2_q">How do I send my files?</summary>
+        <p data-i18n="faq2_a">Attach them to an email or share a Drive link. Excel, CSV, PDF and clear photos of documents are all fine.</p>
+      </details>
+      <details class="faq">
+        <summary data-i18n="faq3_q">How long does it take?</summary>
+        <p data-i18n="faq3_a">Small jobs — up to about 1,000 rows — typically take 2 days. Your fixed quote always states the exact deadline before we start.</p>
+      </details>
+      <details class="faq">
+        <summary data-i18n="faq4_q">What do I receive?</summary>
+        <p data-i18n="faq4_a">The cleaned file plus a QC report listing every change made. If any row breaks the rules we agreed, tell me and I correct it.</p>
+      </details>
+      <details class="faq">
+        <summary data-i18n="faq5_q">How do I pay?</summary>
+        <p data-i18n="faq5_a">Through the platform you hired me on (Fastwork, Freelancer or Projects.co.id), or another method we agree on before work starts. You never pay before seeing the free sample.</p>
+      </details>
+    </div>
+  </section>
+
   <section id="indonesia" lang="id">
-    <p class="kicker">06 — Indonesia</p>
+    <p class="kicker">07 — Indonesia</p>
     <h2>Untuk Klien Indonesia — Perpustakaan &amp; Bisnis Lokal</h2>
     <p style="margin-bottom:14px">Saya membantu perpustakaan sekolah/kampus dan bisnis di Indonesia merapikan data: katalogisasi &amp; klasifikasi DDC, pembersihan dan deduplikasi data Excel, rekap &amp; pivot, serta riset daftar kontak bisnis dari data publik. Setiap pekerjaan melewati QC dan disertai laporan perubahan.</p>
     <table>
@@ -355,7 +464,7 @@ document.documentElement.classList.add('js');
   </section>
 
   <section id="contact">
-    <p class="kicker" data-i18n="kicker_contact">07 — Contact</p>
+    <p class="kicker" data-i18n="kicker_contact">08 — Contact</p>
     <h2 data-i18n="contact_h2">Contact</h2>
     <ul class="contact-list">
       <li>Email: <a href="mailto:ongisnadefafa@gmail.com">ongisnadefafa@gmail.com</a></li>
@@ -488,11 +597,30 @@ document.documentElement.classList.add('js');
     "price_row2": "Fixed-scope projects (e.g. a lead list or a catalogue batch)",
     "price_row2_rate": "Project-based quote — ask with your scope and deadline",
     "pricing_note": "A small paid or sample-first start is welcome on larger jobs, so you can check quality before committing to the full dataset.",
-    "kicker_contact": "07 — Contact",
+    "kicker_contact": "08 — Contact",
     "contact_h2": "Contact",
     "contact_worker": "worker profile",
     "dl_portfolio": "Download full portfolio (PDF)",
-    "footer_text": "© 2026 Mochammad Nur Fakhruddin · Malang, Indonesia. Demo datasets on this page are fictional and labeled as such; lead-list samples use public business data only."
+    "footer_text": "© 2026 Mochammad Nur Fakhruddin · Malang, Indonesia. Demo datasets on this page are fictional and labeled as such; lead-list samples use public business data only.",
+    "meta_desc": "Freelance library data specialist based in Malang, Indonesia. Library cataloguing & DDC classification, Excel data cleaning and deduplication, pivot recaps and dashboards, web research & B2B lead lists from public data.",
+    "hero_caption": "Mochammad Nur Fakhruddin \u2014 Malang, Indonesia",
+    "hero_alt": "Portrait of Mochammad Nur Fakhruddin",
+    "offer5_name": "PDF to Excel & Document Conversion",
+    "offer5_desc": "PDF tables and documents converted into clean, editable Excel or Word files \u2014 structure preserved, figures checked row by row against the source.",
+    "offer5_price": "free first-page sample, then a fixed quote",
+    "kicker_faq": "06 \u2014 FAQ",
+    "faq_h2": "Frequently Asked Questions",
+    "faq1_q": "How do we start?",
+    "faq1_a": "Send your file or a description of the job by email. You first receive a free sample \u2014 25 rows of your data, or the first page of your document \u2014 so you can judge the quality before paying anything.",
+    "faq2_q": "How do I send my files?",
+    "faq2_a": "Attach them to an email or share a Drive link. Excel, CSV, PDF and clear photos of documents are all fine.",
+    "faq3_q": "How long does it take?",
+    "faq3_a": "Small jobs \u2014 up to about 1,000 rows \u2014 typically take 2 days. Your fixed quote always states the exact deadline before we start.",
+    "faq4_q": "What do I receive?",
+    "faq4_a": "The cleaned file plus a QC report listing every change made. If any row breaks the rules we agreed, tell me and I correct it.",
+    "faq5_q": "How do I pay?",
+    "faq5_a": "Through the platform you hired me on (Fastwork, Freelancer or Projects.co.id), or another method we agree on before work starts. You never pay before seeing the free sample."
+
   };
   var ID = {
     "meta_title": "Mochammad Nur Fakhruddin — Spesialis Data Perpustakaan | Katalogisasi, Pembersihan Data, Daftar Prospek",
@@ -603,11 +731,30 @@ document.documentElement.classList.add('js');
     "price_row2": "Proyek cakupan tetap (mis. daftar prospek atau satu batch katalog)",
     "price_row2_rate": "Penawaran per proyek — tanyakan dengan cakupan dan tenggat Anda",
     "pricing_note": "Untuk pekerjaan besar, Anda boleh mulai dari pekerjaan kecil berbayar atau sampel terlebih dahulu, sehingga Anda dapat memeriksa kualitas sebelum berkomitmen pada data lengkap.",
-    "kicker_contact": "07 — Kontak",
+    "kicker_contact": "08 — Kontak",
     "contact_h2": "Kontak",
     "contact_worker": "profil pekerja",
     "dl_portfolio": "Unduh portofolio lengkap (PDF)",
-    "footer_text": "© 2026 Mochammad Nur Fakhruddin · Malang, Indonesia. Data demo di halaman ini bersifat fiktif dan dilabeli sebagai data demo; sampel daftar prospek hanya menggunakan data bisnis publik."
+    "footer_text": "© 2026 Mochammad Nur Fakhruddin · Malang, Indonesia. Data demo di halaman ini bersifat fiktif dan dilabeli sebagai data demo; sampel daftar prospek hanya menggunakan data bisnis publik.",
+    "meta_desc": "Spesialis data perpustakaan lepas yang berbasis di Malang, Indonesia. Katalogisasi perpustakaan & klasifikasi DDC, pembersihan dan deduplikasi data Excel, rekap pivot dan dashboard, serta riset web & daftar prospek B2B dari data publik.",
+    "hero_caption": "Mochammad Nur Fakhruddin \u2014 Malang, Indonesia",
+    "hero_alt": "Foto Mochammad Nur Fakhruddin",
+    "offer5_name": "Konversi PDF ke Excel & Dokumen",
+    "offer5_desc": "Tabel dan dokumen PDF diubah menjadi file Excel atau Word yang bersih dan bisa diedit \u2014 struktur dipertahankan, angka diperiksa baris demi baris terhadap sumbernya.",
+    "offer5_price": "contoh halaman pertama gratis, lalu penawaran harga tetap",
+    "kicker_faq": "06 \u2014 FAQ",
+    "faq_h2": "Pertanyaan yang Sering Diajukan",
+    "faq1_q": "Bagaimana cara memulainya?",
+    "faq1_a": "Kirim file Anda atau uraian pekerjaannya melalui email. Anda akan menerima contoh gratis terlebih dahulu \u2014 25 baris data Anda, atau halaman pertama dokumen Anda \u2014 sehingga Anda dapat menilai kualitasnya sebelum membayar apa pun.",
+    "faq2_q": "Bagaimana cara mengirim file saya?",
+    "faq2_a": "Lampirkan pada email atau bagikan tautan Drive. Excel, CSV, PDF, dan foto dokumen yang jelas semuanya bisa.",
+    "faq3_q": "Berapa lama pengerjaannya?",
+    "faq3_a": "Pekerjaan kecil \u2014 hingga sekitar 1.000 baris \u2014 biasanya selesai dalam 2 hari. Penawaran harga tetap Anda selalu mencantumkan tenggat yang pasti sebelum kita mulai.",
+    "faq4_q": "Apa yang saya terima?",
+    "faq4_a": "File yang sudah dibersihkan plus laporan QC yang mencantumkan setiap perubahan yang dibuat. Jika ada baris yang melanggar aturan yang kita sepakati, beri tahu saya dan akan saya perbaiki.",
+    "faq5_q": "Bagaimana cara membayarnya?",
+    "faq5_a": "Melalui platform tempat Anda mempekerjakan saya (Fastwork, Freelancer, atau Projects.co.id), atau metode lain yang kita sepakati sebelum pekerjaan dimulai. Anda tidak pernah membayar sebelum melihat contoh gratisnya."
+
   };
   var DICT = { en: EN, id: ID };
   function pickLang() {
@@ -629,7 +776,16 @@ document.documentElement.classList.add('js');
       var k = nodes[i].getAttribute('data-i18n');
       if (dict[k] != null) nodes[i].textContent = dict[k];
     }
+    var altNodes = document.querySelectorAll('[data-i18n-alt]');
+    for (var j = 0; j < altNodes.length; j++) {
+      var ak = altNodes[j].getAttribute('data-i18n-alt');
+      if (dict[ak] != null) altNodes[j].setAttribute('alt', dict[ak]);
+    }
     if (dict.meta_title) document.title = dict.meta_title;
+    if (dict.meta_desc) {
+      var md = document.querySelector('meta[name="description"]');
+      if (md) md.setAttribute('content', dict.meta_desc);
+    }
     var be = document.getElementById('langEn');
     var bi = document.getElementById('langId');
     if (be) be.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
