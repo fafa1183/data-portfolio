@@ -9,9 +9,14 @@
   :root{color-scheme:light;--serif:"Playfair Display",Didot,"Bodoni MT",Georgia,"Times New Roman",serif;--ink:#1a2420;--muted:#5c665f;--accent:#0b3d33;--accent-soft:#eef0e6;--gold:#b08d3e;--gold-text:#85662a;--line:#e2dbc9;--card:#fffdf9;--bg:#faf8f3;--warn:#7a5c10;--warn-bg:#f7efda;--danger:#a93226;--on-accent:#f7f3e8}
   :root[data-theme="dark"]{color-scheme:dark;--ink:#ece8df;--muted:#a9b3ab;--accent:#8ec9ae;--accent-soft:#182420;--gold:#c9ab5e;--gold-text:#c9ab5e;--line:#27332c;--card:#141c19;--bg:#0c1210;--warn:#e6c65c;--warn-bg:#2e2a12;--danger:#e0685c;--on-accent:#f7f3e8}
   ::selection{background:var(--gold);color:#141c19}
-  .theme-row{display:flex;justify-content:flex-end;margin-bottom:10px}
+  .theme-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:10px}
   .theme-toggle{padding:9px 15px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--muted);font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
   .theme-toggle:hover{border-color:var(--gold);color:var(--ink)}
+  .lang-switch{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:2px;padding:2px}
+  .lang-btn{background:transparent;border:0;padding:7px 10px;font-family:inherit;font-size:.74rem;font-weight:700;letter-spacing:.16em;color:var(--muted);cursor:pointer}
+  .lang-btn:hover{color:var(--ink)}
+  .lang-btn[aria-pressed="true"]{color:var(--gold-text);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--gold)}
+  .lang-sep{color:var(--line);font-size:.74rem}
   @media (prefers-reduced-motion: no-preference){body{transition:background-color .25s ease,color .25s ease}}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;font-size:1.02rem}
@@ -110,32 +115,39 @@
 </style>
 <script>
 document.documentElement.classList.add('js');
-(function(){try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+(function(){try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l!=='en'&&l!=='id'){l=(navigator.language||'en').toLowerCase().indexOf('id')===0?'id':'en';}document.documentElement.setAttribute('lang',l);}catch(e){}})();
 </script>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="theme-row"><button type="button" id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙 Dark</button></div>
+    <div class="theme-row">
+      <div class="lang-switch" role="group" aria-label="Language / Bahasa">
+        <button type="button" id="langEn" class="lang-btn" aria-pressed="true">EN</button>
+        <span class="lang-sep" aria-hidden="true">|</span>
+        <button type="button" id="langId" class="lang-btn" aria-pressed="false">ID</button>
+      </div>
+      <button type="button" id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙 Dark</button>
+    </div>
     <p class="byline">Mochammad Nur Fakhruddin</p>
-    <p class="role">Library Data Specialist — Cataloguing, Data Cleaning &amp; Web Research</p>
-    <h1 class="display">Messy spreadsheets, catalogs and lists in — clean, verified data out.</h1>
-    <p class="lede">Catalogues with subject headings and DDC classification, deduplicated spreadsheets, pivot recaps and dashboards, and B2B lead lists researched from public sources — every row traceable to its source.</p>
+    <p class="role" data-i18n="role">Library Data Specialist — Cataloguing, Data Cleaning &amp; Web Research</p>
+    <h1 class="display" data-i18n="headline">Messy spreadsheets, catalogs and lists in — clean, verified data out.</h1>
+    <p class="lede" data-i18n="lede">Catalogues with subject headings and DDC classification, deduplicated spreadsheets, pivot recaps and dashboards, and B2B lead lists researched from public sources — every row traceable to its source.</p>
     <div class="hero-rule"></div>
     <div class="hero-stats">
-      <div class="hstat"><b>9,692</b><span>records merged &amp; cleaned</span></div>
-      <div class="hstat"><b>1,653</b><span>duplicate pairs resolved</span></div>
-      <div class="hstat"><b>100%</b><span>records completed with subject headings &amp; DDC</span></div>
+      <div class="hstat"><b>9,692</b><span data-i18n="hstat1_label">records merged &amp; cleaned</span></div>
+      <div class="hstat"><b>1,653</b><span data-i18n="hstat2_label">duplicate pairs resolved</span></div>
+      <div class="hstat"><b>100%</b><span data-i18n="hstat3_label">records completed with subject headings &amp; DDC</span></div>
     </div>
-    <p class="meta">B.Sc. in Library &amp; Information Science, UIN Maulana Malik Ibrahim Malang (2026, GPA 3.46) · Based in Malang, Indonesia · Working with clients locally and internationally</p>
+    <p class="meta" data-i18n="meta">B.Sc. in Library &amp; Information Science, UIN Maulana Malik Ibrahim Malang (2026, GPA 3.46) · Based in Malang, Indonesia · Working with clients locally and internationally</p>
     <div class="links">
-      <a class="cta" href="mailto:ongisnadefafa@gmail.com">Email me</a>
+      <a class="cta" href="mailto:ongisnadefafa@gmail.com" data-i18n="email_me">Email me</a>
       <a href="https://www.freelancer.com/u/nurfakhruddin" target="_blank" rel="noopener">Freelancer</a>
       <a href="https://fastwork.id/user/v9phnd4s" target="_blank" rel="noopener">Fastwork</a>
       <a href="https://projects.co.id/public/browse_users/view/564e70/mochammad-nur-fakhruddin" target="_blank" rel="noopener">Projects.co.id</a>
       <a href="https://www.linkedin.com/in/mochammad-nur-fakhruddin-0166ba426/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="Portfolio_Mochammad_Nur_Fakhruddin.pdf">Portfolio PDF</a>
+      <a href="Portfolio_Mochammad_Nur_Fakhruddin.pdf" data-i18n="portfolio_pdf">Portfolio PDF</a>
     </div>
   </div>
 </header>
@@ -143,188 +155,188 @@ document.documentElement.classList.add('js');
 <main class="wrap">
 
   <section id="offers">
-    <p class="kicker">01 — Services</p>
-    <h2>What I Offer — Everything Up Front</h2>
+    <p class="kicker" data-i18n="kicker_services">01 — Services</p>
+    <h2 data-i18n="offers_h2">What I Offer — Everything Up Front</h2>
     <div class="grid">
       <div class="offer">
         <span class="idx">01</span>
-        <h3>Library Cataloguing &amp; DDC</h3>
-        <p>Your school or campus library catalogue, completed and cleaned: subject headings, DDC call numbers, duplicates merged, SLiMS-ready.</p>
-        <span class="price">from Rp149.000 / 100 titles</span>
+        <h3 data-i18n="offer1_name">Library Cataloguing &amp; DDC</h3>
+        <p data-i18n="offer1_desc">Your school or campus library catalogue, completed and cleaned: subject headings, DDC call numbers, duplicates merged, SLiMS-ready.</p>
+        <span class="price" data-i18n="offer1_price">from Rp149.000 / 100 titles</span>
       </div>
       <div class="offer">
         <span class="idx">02</span>
-        <h3>Excel Data Cleaning &amp; Deduplication</h3>
-        <p>Your messy spreadsheet back as one clean file: duplicates removed, names, dates and formats standardised — with a QC report of every change.</p>
-        <span class="price">from Rp99.000</span>
+        <h3 data-i18n="offer2_name">Excel Data Cleaning &amp; Deduplication</h3>
+        <p data-i18n="offer2_desc">Your messy spreadsheet back as one clean file: duplicates removed, names, dates and formats standardised — with a QC report of every change.</p>
+        <span class="price" data-i18n="offer2_price">from Rp99.000</span>
       </div>
       <div class="offer">
         <span class="idx">03</span>
-        <h3>Recap, Pivot &amp; Dashboards</h3>
-        <p>Your raw table turned into recaps, pivot summaries and a simple dashboard your team can actually read and reuse.</p>
-        <span class="price">from Rp149.000</span>
+        <h3 data-i18n="offer3_name">Recap, Pivot &amp; Dashboards</h3>
+        <p data-i18n="offer3_desc">Your raw table turned into recaps, pivot summaries and a simple dashboard your team can actually read and reuse.</p>
+        <span class="price" data-i18n="offer3_price">from Rp149.000</span>
       </div>
       <div class="offer">
         <span class="idx">04</span>
-        <h3>Web Research &amp; Lead Lists</h3>
-        <p>A structured B2B lead list built only from public data — every row verified and carrying its source URL, so you can check each record yourself.</p>
-        <span class="price">free 25-row sample first, then a fixed quote</span>
+        <h3 data-i18n="offer4_name">Web Research &amp; Lead Lists</h3>
+        <p data-i18n="offer4_desc">A structured B2B lead list built only from public data — every row verified and carrying its source URL, so you can check each record yourself.</p>
+        <span class="price" data-i18n="offer4_price">free 25-row sample first, then a fixed quote</span>
       </div>
     </div>
-    <p class="intl-note">International clients: from $10/hour or a fixed project quote.</p>
-    <div class="trust">Free 25-row sample &nbsp;·&nbsp; Fixed price before we start &nbsp;·&nbsp; QC report with every delivery &nbsp;·&nbsp; Reply within 24 hours</div>
+    <p class="intl-note" data-i18n="intl_note">International clients: from $10/hour or a fixed project quote.</p>
+    <div class="trust"><span data-i18n="trust1">Free 25-row sample</span> &nbsp;·&nbsp; <span data-i18n="trust2">Fixed price before we start</span> &nbsp;·&nbsp; <span data-i18n="trust3">QC report with every delivery</span> &nbsp;·&nbsp; <span data-i18n="trust4">Reply within 24 hours</span></div>
   </section>
 
   <section id="walkthrough">
-    <p class="kicker">02 — Walkthrough</p>
-    <h2>See Exactly What Changes</h2>
-    <p class="small-note">Illustrative rows — transformations from real projects.</p>
+    <p class="kicker" data-i18n="kicker_walk">02 — Walkthrough</p>
+    <h2 data-i18n="walk_h2">See Exactly What Changes</h2>
+    <p class="small-note" data-i18n="walk_note">Illustrative rows — transformations from real projects.</p>
     <div class="stepper-nav">
-      <button type="button" class="navbtn" id="prevBtn">&larr; Prev</button>
+      <button type="button" class="navbtn" id="prevBtn" data-i18n="prev_btn">&larr; Prev</button>
       <span class="step-label" id="stepLabel">Fix 1 of 5</span>
       <span class="dots" id="stepDots"></span>
-      <button type="button" class="navbtn" id="nextBtn">Next &rarr;</button>
+      <button type="button" class="navbtn" id="nextBtn" data-i18n="next_btn">Next &rarr;</button>
     </div>
     <div id="stepper">
       <article class="fixcard">
         <span class="fx-idx">01</span>
-        <h3>Fix 1 — Author Names, Standardised</h3>
-        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Fakhruddin, Moch. N. (penulis)</span></div>
-        <div class="fx-row fx-after"><span class="fx-k">After</span><span>Fakhruddin, Mochammad Nur</span></div>
-        <span class="chip">✓ role labels removed, name standardized</span>
+        <h3 data-i18n="fix1_title">Fix 1 — Author Names, Standardised</h3>
+        <div class="fx-row fx-before"><span class="fx-k" data-i18n="fx_before">Before</span><span class="val">Fakhruddin, Moch. N. (penulis)</span></div>
+        <div class="fx-row fx-after"><span class="fx-k" data-i18n="fx_after">After</span><span>Fakhruddin, Mochammad Nur</span></div>
+        <span class="chip" data-i18n="fix1_chip">✓ role labels removed, name standardized</span>
       </article>
       <article class="fixcard">
         <span class="fx-idx">02</span>
-        <h3>Fix 2 — Empty Subjects &amp; DDC, Completed</h3>
-        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Subject: — (empty) · DDC: —</span></div>
-        <div class="fx-row fx-after"><span class="fx-k">After</span><span>Subject: Library cataloguing · DDC filled</span></div>
-        <span class="chip">✓ 100% of 9,692 records completed</span>
+        <h3 data-i18n="fix2_title">Fix 2 — Empty Subjects &amp; DDC, Completed</h3>
+        <div class="fx-row fx-before"><span class="fx-k" data-i18n="fx_before">Before</span><span class="val" data-i18n="fix2_before">Subject: — (empty) · DDC: —</span></div>
+        <div class="fx-row fx-after"><span class="fx-k" data-i18n="fx_after">After</span><span data-i18n="fix2_after">Subject: Library cataloguing · DDC filled</span></div>
+        <span class="chip" data-i18n="fix2_chip">✓ 100% of 9,692 records completed</span>
       </article>
       <article class="fixcard">
         <span class="fx-idx">03</span>
-        <h3>Fix 3 — Duplicates, Merged</h3>
-        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Same title × 2 rows (1,653 pairs found)</span></div>
-        <div class="fx-row fx-after"><span class="fx-k">After</span><span>1 merged record — best copy kept</span></div>
-        <span class="chip">✓ duplicates resolved</span>
+        <h3 data-i18n="fix3_title">Fix 3 — Duplicates, Merged</h3>
+        <div class="fx-row fx-before"><span class="fx-k" data-i18n="fx_before">Before</span><span class="val" data-i18n="fix3_before">Same title × 2 rows (1,653 pairs found)</span></div>
+        <div class="fx-row fx-after"><span class="fx-k" data-i18n="fx_after">After</span><span data-i18n="fix3_after">1 merged record — best copy kept</span></div>
+        <span class="chip" data-i18n="fix3_chip">✓ duplicates resolved</span>
       </article>
       <article class="fixcard">
         <span class="fx-idx">04</span>
-        <h3>Fix 4 — Messy Text, Standardised (demo data)</h3>
-        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">jOHN&nbsp; doe — JOHN@GMAIL,COM</span></div>
-        <div class="fx-row fx-after"><span class="fx-k">After</span><span>John Doe — john@gmail.com</span></div>
-        <span class="chip">✓ case &amp; format standardized (demo data)</span>
+        <h3 data-i18n="fix4_title">Fix 4 — Messy Text, Standardised (demo data)</h3>
+        <div class="fx-row fx-before"><span class="fx-k" data-i18n="fx_before">Before</span><span class="val">jOHN&nbsp; doe — JOHN@GMAIL,COM</span></div>
+        <div class="fx-row fx-after"><span class="fx-k" data-i18n="fx_after">After</span><span>John Doe — john@gmail.com</span></div>
+        <span class="chip" data-i18n="fix4_chip">✓ case &amp; format standardized (demo data)</span>
       </article>
       <article class="fixcard">
         <span class="fx-idx">05</span>
-        <h3>Fix 5 — Lead Rows, Verified</h3>
-        <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Business found — no source, no email check</span></div>
-        <div class="fx-row fx-after"><span class="fx-k">After</span><span>Business + public email + phone, source URL on the row</span></div>
-        <span class="chip">✓ verified against public sources</span>
+        <h3 data-i18n="fix5_title">Fix 5 — Lead Rows, Verified</h3>
+        <div class="fx-row fx-before"><span class="fx-k" data-i18n="fx_before">Before</span><span class="val" data-i18n="fix5_before">Business found — no source, no email check</span></div>
+        <div class="fx-row fx-after"><span class="fx-k" data-i18n="fx_after">After</span><span data-i18n="fix5_after">Business + public email + phone, source URL on the row</span></div>
+        <span class="chip" data-i18n="fix5_chip">✓ verified against public sources</span>
       </article>
     </div>
-    <div class="counts">From the real catalog project: <b>9,692 records</b> read · <b>1,653 duplicate pairs</b> resolved · every change listed in the QC report — <b>nothing changes silently</b>.</div>
+    <div class="counts"><span data-i18n="counts_a">From the real catalog project:</span> <b><span data-i18n="counts_records">9,692 records</span></b> <span data-i18n="counts_b">read ·</span> <b><span data-i18n="counts_dup">1,653 duplicate pairs</span></b> <span data-i18n="counts_c">resolved · every change listed in the QC report —</span> <b><span data-i18n="counts_d">nothing changes silently</span></b>.</div>
     <div class="dl">
-      <a class="btn primary" href="#contact">Send me your file — start with a free 25-row sample</a>
+      <a class="btn primary" href="#contact" data-i18n="cta_sample">Send me your file — start with a free 25-row sample</a>
     </div>
   </section>
 
   <section id="work">
-    <p class="kicker">03 — Selected Work</p>
-    <h2>Selected Work</h2>
+    <p class="kicker" data-i18n="kicker_work">03 — Selected Work</p>
+    <h2 data-i18n="work_h2">Selected Work</h2>
 
     <div class="case">
-      <span class="tag real">Real completed work</span>
-      <h3>Case 1 — Library Catalog Consolidation</h3>
-      <p>Several library catalog exports merged into one clean master catalogue. Duplicate pairs were detected and resolved, and every record was completed with subject headings and DDC classification.</p>
+      <span class="tag real" data-i18n="tag_real">Real completed work</span>
+      <h3 data-i18n="case1_title">Case 1 — Library Catalog Consolidation</h3>
+      <p data-i18n="case1_desc">Several library catalog exports merged into one clean master catalogue. Duplicate pairs were detected and resolved, and every record was completed with subject headings and DDC classification.</p>
       <div class="stats">
-        <div class="stat"><b>9,692</b><span>records merged &amp; cleaned</span></div>
-        <div class="stat"><b>1,653</b><span>duplicate pairs detected &amp; resolved</span></div>
-        <div class="stat"><b>100%</b><span>records completed with subject headings &amp; DDC</span></div>
+        <div class="stat"><b>9,692</b><span data-i18n="hstat1_label">records merged &amp; cleaned</span></div>
+        <div class="stat"><b>1,653</b><span data-i18n="case1_stat2">duplicate pairs detected &amp; resolved</span></div>
+        <div class="stat"><b>100%</b><span data-i18n="hstat3_label">records completed with subject headings &amp; DDC</span></div>
       </div>
-      <figure class="plate"><img src="Porto_1_Katalog.jpg" alt="Case study card: library catalog consolidation, 9,692 records"><figcaption>PLATE 01 — Catalog Consolidation</figcaption></figure>
+      <figure class="plate"><img src="Porto_1_Katalog.jpg" alt="Case study card: library catalog consolidation, 9,692 records"><figcaption data-i18n="plate01">PLATE 01 — Catalog Consolidation</figcaption></figure>
       <div class="ba">
         <figure>
           <img src="V2_1a_Katalog_Sebelum.jpg" alt="Catalogue data before cleaning">
-          <figcaption>PLATE 02 · Before — raw merged catalogue data</figcaption>
+          <figcaption data-i18n="plate02">PLATE 02 · Before — raw merged catalogue data</figcaption>
         </figure>
         <figure>
           <img src="V2_1b_Katalog_Sesudah.jpg" alt="Catalogue data after cleaning and DDC classification">
-          <figcaption>PLATE 03 · After — cleaned, deduplicated, classified</figcaption>
+          <figcaption data-i18n="plate03">PLATE 03 · After — cleaned, deduplicated, classified</figcaption>
         </figure>
       </div>
     </div>
 
     <div class="case">
-      <span class="tag demo">Demo dataset — example work</span>
-      <h3>Case 2 — Excel Data Cleaning, Before / After</h3>
-      <p>Example of a typical cleaning job on a demonstration dataset: inconsistent spellings, mixed date formats and duplicate rows standardised into one clean table. The dataset is fictional and shown to demonstrate method and output format.</p>
-      <figure class="plate"><img src="Porto_2_DataCleaning.jpg" alt="Case study card: Excel data cleaning"><figcaption>PLATE 04 — Data Cleaning</figcaption></figure>
+      <span class="tag demo" data-i18n="tag_demo">Demo dataset — example work</span>
+      <h3 data-i18n="case2_title">Case 2 — Excel Data Cleaning, Before / After</h3>
+      <p data-i18n="case2_desc">Example of a typical cleaning job on a demonstration dataset: inconsistent spellings, mixed date formats and duplicate rows standardised into one clean table. The dataset is fictional and shown to demonstrate method and output format.</p>
+      <figure class="plate"><img src="Porto_2_DataCleaning.jpg" alt="Case study card: Excel data cleaning"><figcaption data-i18n="plate04">PLATE 04 — Data Cleaning</figcaption></figure>
       <div class="ba">
         <figure>
           <img src="V2_2a_Cleaning_Sebelum.jpg" alt="Spreadsheet before cleaning (demo data)">
-          <figcaption>PLATE 05 · Before (demo data)</figcaption>
+          <figcaption data-i18n="plate05">PLATE 05 · Before (demo data)</figcaption>
         </figure>
         <figure>
           <img src="V2_2b_Cleaning_Sesudah.jpg" alt="Spreadsheet after cleaning (demo data)">
-          <figcaption>PLATE 06 · After (demo data)</figcaption>
+          <figcaption data-i18n="plate06">PLATE 06 · After (demo data)</figcaption>
         </figure>
       </div>
     </div>
 
     <div class="case">
-      <span class="tag demo">Demo dataset — example work</span>
-      <h3>Case 3 — Recap, Pivot Table &amp; Dashboard</h3>
-      <p>Example recap workflow on a demonstration dataset: a cleaned table summarised with pivot tables and presented as a simple dashboard. The dataset is fictional and shown to demonstrate method and output format.</p>
-      <figure class="plate"><img src="Porto_3_OlahData.jpg" alt="Case study card: recap, pivot and dashboard"><figcaption>PLATE 07 — Recap &amp; Dashboard</figcaption></figure>
+      <span class="tag demo" data-i18n="tag_demo">Demo dataset — example work</span>
+      <h3 data-i18n="case3_title">Case 3 — Recap, Pivot Table &amp; Dashboard</h3>
+      <p data-i18n="case3_desc">Example recap workflow on a demonstration dataset: a cleaned table summarised with pivot tables and presented as a simple dashboard. The dataset is fictional and shown to demonstrate method and output format.</p>
+      <figure class="plate"><img src="Porto_3_OlahData.jpg" alt="Case study card: recap, pivot and dashboard"><figcaption data-i18n="plate07">PLATE 07 — Recap &amp; Dashboard</figcaption></figure>
       <div class="ba">
         <figure>
           <img src="V2_3_OlahData_TabelBersih.jpg" alt="Cleaned table (demo data)">
-          <figcaption>PLATE 08 · Clean table (demo data)</figcaption>
+          <figcaption data-i18n="plate08">PLATE 08 · Clean table (demo data)</figcaption>
         </figure>
         <figure>
           <img src="V2_4_OlahData_Pivot.jpg" alt="Pivot summary (demo data)">
-          <figcaption>PLATE 09 · Pivot summary (demo data)</figcaption>
+          <figcaption data-i18n="plate09">PLATE 09 · Pivot summary (demo data)</figcaption>
         </figure>
       </div>
-      <figure class="plate"><img src="V2_5_OlahData_Dashboard.jpg" alt="Dashboard view (demo data)"><figcaption>PLATE 10 · Dashboard (demo data)</figcaption></figure>
+      <figure class="plate"><img src="V2_5_OlahData_Dashboard.jpg" alt="Dashboard view (demo data)"><figcaption data-i18n="plate10">PLATE 10 · Dashboard (demo data)</figcaption></figure>
     </div>
 
     <div class="case">
-      <span class="tag real">Real sample — public data</span>
-      <h3>Case 4 — B2B Lead List Sample: 25 US Healthcare Businesses</h3>
-      <p>A real sample researched from public sources: 25 US healthcare businesses (dentists, dermatology, chiropractic, physical therapy, veterinary, optometry and more). Every one of the 25 rows includes a public business email and phone number, and every row carries the source URL it was verified from.</p>
+      <span class="tag real" data-i18n="tag_real_sample">Real sample — public data</span>
+      <h3 data-i18n="case4_title">Case 4 — B2B Lead List Sample: 25 US Healthcare Businesses</h3>
+      <p data-i18n="case4_desc">A real sample researched from public sources: 25 US healthcare businesses (dentists, dermatology, chiropractic, physical therapy, veterinary, optometry and more). Every one of the 25 rows includes a public business email and phone number, and every row carries the source URL it was verified from.</p>
       <div class="stats">
-        <div class="stat"><b>25 / 25</b><span>rows with public business email &amp; phone</span></div>
-        <div class="stat"><b>100%</b><span>rows with a source URL</span></div>
+        <div class="stat"><b>25 / 25</b><span data-i18n="case4_stat1">rows with public business email &amp; phone</span></div>
+        <div class="stat"><b>100%</b><span data-i18n="case4_stat2">rows with a source URL</span></div>
       </div>
       <div class="dl">
-        <a class="btn" href="Sample_25_USA_Healthcare_Leads.xlsx">Download sample (.xlsx)</a>
-        <a class="btn" href="Sample_25_USA_Healthcare_Leads.csv">Download sample (.csv)</a>
+        <a class="btn" href="Sample_25_USA_Healthcare_Leads.xlsx" data-i18n="dl_xlsx">Download sample (.xlsx)</a>
+        <a class="btn" href="Sample_25_USA_Healthcare_Leads.csv" data-i18n="dl_csv">Download sample (.csv)</a>
       </div>
     </div>
   </section>
 
   <section id="process">
-    <p class="kicker">04 — Process</p>
-    <h2>How I Work — Quality Control on Every Job</h2>
-    <figure class="plate"><img src="Porto_4_MetodeQC.jpg" alt="Four-step working method and QC"><figcaption>PLATE 11 — Method &amp; QC</figcaption></figure>
+    <p class="kicker" data-i18n="kicker_process">04 — Process</p>
+    <h2 data-i18n="process_h2">How I Work — Quality Control on Every Job</h2>
+    <figure class="plate"><img src="Porto_4_MetodeQC.jpg" alt="Four-step working method and QC"><figcaption data-i18n="plate11">PLATE 11 — Method &amp; QC</figcaption></figure>
     <ol class="steps">
-      <li><b>Intake &amp; scope check</b> — we agree exactly which columns/fields are in scope before work starts.</li>
-      <li><b>Cleaning / cataloguing</b> — the work itself: dedupe, standardise, classify, research.</li>
-      <li><b>Mandatory QC pass</b> — format validation, a second deduplication check, and verification that no out-of-scope columns were changed.</li>
-      <li><b>Delivery with a QC report</b> — you receive the finished file plus a short report of what was changed and found.</li>
+      <li><b data-i18n="step1_title">Intake &amp; scope check</b><span data-i18n="step1_desc"> — we agree exactly which columns/fields are in scope before work starts.</span></li>
+      <li><b data-i18n="step2_title">Cleaning / cataloguing</b><span data-i18n="step2_desc"> — the work itself: dedupe, standardise, classify, research.</span></li>
+      <li><b data-i18n="step3_title">Mandatory QC pass</b><span data-i18n="step3_desc"> — format validation, a second deduplication check, and verification that no out-of-scope columns were changed.</span></li>
+      <li><b data-i18n="step4_title">Delivery with a QC report</b><span data-i18n="step4_desc"> — you receive the finished file plus a short report of what was changed and found.</span></li>
     </ol>
   </section>
 
   <section id="pricing">
-    <p class="kicker">05 — Pricing</p>
-    <h2>Pricing — International Clients</h2>
+    <p class="kicker" data-i18n="kicker_pricing">05 — Pricing</p>
+    <h2 data-i18n="pricing_h2">Pricing — International Clients</h2>
     <table>
-      <tr><th>Service</th><th>Rate</th></tr>
-      <tr><td>Data cleaning, cataloguing, research &amp; recap work</td><td>From <b>$10/hour</b></td></tr>
-      <tr><td>Fixed-scope projects (e.g. a lead list or a catalogue batch)</td><td>Project-based quote — ask with your scope and deadline</td></tr>
+      <tr><th data-i18n="th_service">Service</th><th data-i18n="th_rate">Rate</th></tr>
+      <tr><td data-i18n="price_row1">Data cleaning, cataloguing, research &amp; recap work</td><td><span data-i18n="price_from">From</span> <b data-i18n="price_rate1">$10/hour</b></td></tr>
+      <tr><td data-i18n="price_row2">Fixed-scope projects (e.g. a lead list or a catalogue batch)</td><td data-i18n="price_row2_rate">Project-based quote — ask with your scope and deadline</td></tr>
     </table>
-    <p style="margin-top:10px;color:var(--muted)">A small paid or sample-first start is welcome on larger jobs, so you can check quality before committing to the full dataset.</p>
+    <p style="margin-top:10px;color:var(--muted)" data-i18n="pricing_note">A small paid or sample-first start is welcome on larger jobs, so you can check quality before committing to the full dataset.</p>
   </section>
 
   <section id="indonesia" lang="id">
@@ -343,31 +355,310 @@ document.documentElement.classList.add('js');
   </section>
 
   <section id="contact">
-    <p class="kicker">07 — Contact</p>
-    <h2>Contact</h2>
+    <p class="kicker" data-i18n="kicker_contact">07 — Contact</p>
+    <h2 data-i18n="contact_h2">Contact</h2>
     <ul class="contact-list">
       <li>Email: <a href="mailto:ongisnadefafa@gmail.com">ongisnadefafa@gmail.com</a></li>
       <li>Freelancer: <a href="https://www.freelancer.com/u/nurfakhruddin" target="_blank" rel="noopener">freelancer.com/u/nurfakhruddin</a></li>
       <li>Fastwork: <a href="https://fastwork.id/user/v9phnd4s" target="_blank" rel="noopener">fastwork.id/user/v9phnd4s</a></li>
-      <li>Projects.co.id: <a href="https://projects.co.id/public/browse_users/view/564e70/mochammad-nur-fakhruddin" target="_blank" rel="noopener">worker profile</a></li>
+      <li>Projects.co.id: <a href="https://projects.co.id/public/browse_users/view/564e70/mochammad-nur-fakhruddin" target="_blank" rel="noopener" data-i18n="contact_worker">worker profile</a></li>
       <li>LinkedIn: <a href="https://www.linkedin.com/in/mochammad-nur-fakhruddin-0166ba426/" target="_blank" rel="noopener">Mochammad Nur Fakhruddin</a></li>
     </ul>
     <div class="dl">
-      <a class="btn primary" href="Portfolio_Mochammad_Nur_Fakhruddin.pdf">Download full portfolio (PDF)</a>
+      <a class="btn primary" href="Portfolio_Mochammad_Nur_Fakhruddin.pdf" data-i18n="dl_portfolio">Download full portfolio (PDF)</a>
     </div>
   </section>
 
 </main>
 
+<footer>
+  <div class="wrap">
+    <p data-i18n="footer_text">© 2026 Mochammad Nur Fakhruddin · Malang, Indonesia. Demo datasets on this page are fictional and labeled as such; lead-list samples use public business data only.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var EN = {
+    "meta_title": "Mochammad Nur Fakhruddin — Library Data Specialist | Cataloguing, Data Cleaning, Lead Lists",
+    "role": "Library Data Specialist — Cataloguing, Data Cleaning & Web Research",
+    "headline": "Messy spreadsheets, catalogs and lists in — clean, verified data out.",
+    "lede": "Catalogues with subject headings and DDC classification, deduplicated spreadsheets, pivot recaps and dashboards, and B2B lead lists researched from public sources — every row traceable to its source.",
+    "hstat1_label": "records merged & cleaned",
+    "hstat2_label": "duplicate pairs resolved",
+    "hstat3_label": "records completed with subject headings & DDC",
+    "meta": "B.Sc. in Library & Information Science, UIN Maulana Malik Ibrahim Malang (2026, GPA 3.46) · Based in Malang, Indonesia · Working with clients locally and internationally",
+    "email_me": "Email me",
+    "portfolio_pdf": "Portfolio PDF",
+    "kicker_services": "01 — Services",
+    "offers_h2": "What I Offer — Everything Up Front",
+    "offer1_name": "Library Cataloguing & DDC",
+    "offer1_desc": "Your school or campus library catalogue, completed and cleaned: subject headings, DDC call numbers, duplicates merged, SLiMS-ready.",
+    "offer1_price": "from Rp149.000 / 100 titles",
+    "offer2_name": "Excel Data Cleaning & Deduplication",
+    "offer2_desc": "Your messy spreadsheet back as one clean file: duplicates removed, names, dates and formats standardised — with a QC report of every change.",
+    "offer2_price": "from Rp99.000",
+    "offer3_name": "Recap, Pivot & Dashboards",
+    "offer3_desc": "Your raw table turned into recaps, pivot summaries and a simple dashboard your team can actually read and reuse.",
+    "offer3_price": "from Rp149.000",
+    "offer4_name": "Web Research & Lead Lists",
+    "offer4_desc": "A structured B2B lead list built only from public data — every row verified and carrying its source URL, so you can check each record yourself.",
+    "offer4_price": "free 25-row sample first, then a fixed quote",
+    "intl_note": "International clients: from $10/hour or a fixed project quote.",
+    "trust1": "Free 25-row sample",
+    "trust2": "Fixed price before we start",
+    "trust3": "QC report with every delivery",
+    "trust4": "Reply within 24 hours",
+    "kicker_walk": "02 — Walkthrough",
+    "walk_h2": "See Exactly What Changes",
+    "walk_note": "Illustrative rows — transformations from real projects.",
+    "prev_btn": "← Prev",
+    "next_btn": "Next →",
+    "fx_before": "Before",
+    "fx_after": "After",
+    "fix1_title": "Fix 1 — Author Names, Standardised",
+    "fix1_chip": "✓ role labels removed, name standardized",
+    "fix2_title": "Fix 2 — Empty Subjects & DDC, Completed",
+    "fix2_before": "Subject: — (empty) · DDC: —",
+    "fix2_after": "Subject: Library cataloguing · DDC filled",
+    "fix2_chip": "✓ 100% of 9,692 records completed",
+    "fix3_title": "Fix 3 — Duplicates, Merged",
+    "fix3_before": "Same title × 2 rows (1,653 pairs found)",
+    "fix3_after": "1 merged record — best copy kept",
+    "fix3_chip": "✓ duplicates resolved",
+    "fix4_title": "Fix 4 — Messy Text, Standardised (demo data)",
+    "fix4_chip": "✓ case & format standardized (demo data)",
+    "fix5_title": "Fix 5 — Lead Rows, Verified",
+    "fix5_before": "Business found — no source, no email check",
+    "fix5_after": "Business + public email + phone, source URL on the row",
+    "fix5_chip": "✓ verified against public sources",
+    "counts_a": "From the real catalog project:",
+    "counts_records": "9,692 records",
+    "counts_b": "read ·",
+    "counts_dup": "1,653 duplicate pairs",
+    "counts_c": "resolved · every change listed in the QC report —",
+    "counts_d": "nothing changes silently",
+    "cta_sample": "Send me your file — start with a free 25-row sample",
+    "kicker_work": "03 — Selected Work",
+    "work_h2": "Selected Work",
+    "tag_real": "Real completed work",
+    "tag_demo": "Demo dataset — example work",
+    "tag_real_sample": "Real sample — public data",
+    "case1_title": "Case 1 — Library Catalog Consolidation",
+    "case1_desc": "Several library catalog exports merged into one clean master catalogue. Duplicate pairs were detected and resolved, and every record was completed with subject headings and DDC classification.",
+    "case1_stat2": "duplicate pairs detected & resolved",
+    "plate01": "PLATE 01 — Catalog Consolidation",
+    "plate02": "PLATE 02 · Before — raw merged catalogue data",
+    "plate03": "PLATE 03 · After — cleaned, deduplicated, classified",
+    "case2_title": "Case 2 — Excel Data Cleaning, Before / After",
+    "case2_desc": "Example of a typical cleaning job on a demonstration dataset: inconsistent spellings, mixed date formats and duplicate rows standardised into one clean table. The dataset is fictional and shown to demonstrate method and output format.",
+    "plate04": "PLATE 04 — Data Cleaning",
+    "plate05": "PLATE 05 · Before (demo data)",
+    "plate06": "PLATE 06 · After (demo data)",
+    "case3_title": "Case 3 — Recap, Pivot Table & Dashboard",
+    "case3_desc": "Example recap workflow on a demonstration dataset: a cleaned table summarised with pivot tables and presented as a simple dashboard. The dataset is fictional and shown to demonstrate method and output format.",
+    "plate07": "PLATE 07 — Recap & Dashboard",
+    "plate08": "PLATE 08 · Clean table (demo data)",
+    "plate09": "PLATE 09 · Pivot summary (demo data)",
+    "plate10": "PLATE 10 · Dashboard (demo data)",
+    "case4_title": "Case 4 — B2B Lead List Sample: 25 US Healthcare Businesses",
+    "case4_desc": "A real sample researched from public sources: 25 US healthcare businesses (dentists, dermatology, chiropractic, physical therapy, veterinary, optometry and more). Every one of the 25 rows includes a public business email and phone number, and every row carries the source URL it was verified from.",
+    "case4_stat1": "rows with public business email & phone",
+    "case4_stat2": "rows with a source URL",
+    "dl_xlsx": "Download sample (.xlsx)",
+    "dl_csv": "Download sample (.csv)",
+    "kicker_process": "04 — Process",
+    "process_h2": "How I Work — Quality Control on Every Job",
+    "plate11": "PLATE 11 — Method & QC",
+    "step1_title": "Intake & scope check",
+    "step1_desc": " — we agree exactly which columns/fields are in scope before work starts.",
+    "step2_title": "Cleaning / cataloguing",
+    "step2_desc": " — the work itself: dedupe, standardise, classify, research.",
+    "step3_title": "Mandatory QC pass",
+    "step3_desc": " — format validation, a second deduplication check, and verification that no out-of-scope columns were changed.",
+    "step4_title": "Delivery with a QC report",
+    "step4_desc": " — you receive the finished file plus a short report of what was changed and found.",
+    "kicker_pricing": "05 — Pricing",
+    "pricing_h2": "Pricing — International Clients",
+    "th_service": "Service",
+    "th_rate": "Rate",
+    "price_row1": "Data cleaning, cataloguing, research & recap work",
+    "price_from": "From",
+    "price_rate1": "$10/hour",
+    "price_row2": "Fixed-scope projects (e.g. a lead list or a catalogue batch)",
+    "price_row2_rate": "Project-based quote — ask with your scope and deadline",
+    "pricing_note": "A small paid or sample-first start is welcome on larger jobs, so you can check quality before committing to the full dataset.",
+    "kicker_contact": "07 — Contact",
+    "contact_h2": "Contact",
+    "contact_worker": "worker profile",
+    "dl_portfolio": "Download full portfolio (PDF)",
+    "footer_text": "© 2026 Mochammad Nur Fakhruddin · Malang, Indonesia. Demo datasets on this page are fictional and labeled as such; lead-list samples use public business data only."
+  };
+  var ID = {
+    "meta_title": "Mochammad Nur Fakhruddin — Spesialis Data Perpustakaan | Katalogisasi, Pembersihan Data, Daftar Prospek",
+    "role": "Spesialis Data Perpustakaan — Katalogisasi, Pembersihan Data & Riset Web",
+    "headline": "Spreadsheet, katalog, dan daftar berantakan masuk — data bersih dan terverifikasi keluar.",
+    "lede": "Katalog dengan tajuk subjek dan klasifikasi DDC, spreadsheet bebas duplikat, rekap pivot dan dashboard, serta daftar prospek (leads) B2B yang diriset dari sumber publik — setiap baris dapat ditelusuri ke sumbernya.",
+    "hstat1_label": "catatan digabung & dibersihkan",
+    "hstat2_label": "pasangan duplikat diselesaikan",
+    "hstat3_label": "catatan dilengkapi tajuk subjek & DDC",
+    "meta": "S1 Perpustakaan & Sains Informasi, UIN Maulana Malik Ibrahim Malang (2026, IPK 3.46) · Berbasis di Malang, Indonesia · Melayani klien lokal dan internasional",
+    "email_me": "Kirim Email",
+    "portfolio_pdf": "Portofolio PDF",
+    "kicker_services": "01 — Layanan",
+    "offers_h2": "Yang Saya Tawarkan — Semua Jelas di Depan",
+    "offer1_name": "Katalogisasi Perpustakaan & DDC",
+    "offer1_desc": "Katalog perpustakaan sekolah atau kampus Anda, dilengkapi dan dibersihkan: tajuk subjek, nomor panggil DDC, duplikat digabung, siap SLiMS.",
+    "offer1_price": "mulai Rp149.000 / 100 judul",
+    "offer2_name": "Pembersihan & Deduplikasi Data Excel",
+    "offer2_desc": "Spreadsheet berantakan Anda kembali sebagai satu file bersih: duplikat dihapus, nama, tanggal, dan format dibakukan — disertai laporan QC untuk setiap perubahan.",
+    "offer2_price": "mulai Rp99.000",
+    "offer3_name": "Rekap, Pivot & Dashboard",
+    "offer3_desc": "Tabel mentah Anda diubah menjadi rekap, ringkasan pivot, dan dashboard sederhana yang benar-benar bisa dibaca dan dipakai ulang oleh tim Anda.",
+    "offer3_price": "mulai Rp149.000",
+    "offer4_name": "Riset Web & Daftar Prospek (Leads)",
+    "offer4_desc": "Daftar prospek B2B terstruktur yang dibangun hanya dari data publik — setiap baris terverifikasi dan mencantumkan URL sumbernya, sehingga Anda dapat memeriksa setiap catatan sendiri.",
+    "offer4_price": "sampel gratis 25 baris dulu, lalu penawaran harga tetap",
+    "intl_note": "Klien internasional: mulai $10/jam atau penawaran harga tetap per proyek.",
+    "trust1": "Sampel gratis 25 baris",
+    "trust2": "Harga tetap sebelum mulai",
+    "trust3": "Laporan QC di setiap pengiriman",
+    "trust4": "Balasan dalam 24 jam",
+    "kicker_walk": "02 — Peragaan",
+    "walk_h2": "Lihat Persis Apa yang Berubah",
+    "walk_note": "Baris ilustratif — transformasi dari proyek nyata.",
+    "prev_btn": "← Sebelumnya",
+    "next_btn": "Berikutnya →",
+    "fx_before": "Sebelum",
+    "fx_after": "Sesudah",
+    "fix1_title": "Perbaikan 1 — Nama Pengarang, Dibakukan",
+    "fix1_chip": "✓ label peran dihapus, nama dibakukan",
+    "fix2_title": "Perbaikan 2 — Subjek & DDC Kosong, Dilengkapi",
+    "fix2_before": "Subjek: — (kosong) · DDC: —",
+    "fix2_after": "Subjek: Katalogisasi perpustakaan · DDC terisi",
+    "fix2_chip": "✓ 100% dari 9,692 catatan dilengkapi",
+    "fix3_title": "Perbaikan 3 — Duplikat, Digabung",
+    "fix3_before": "Judul sama × 2 baris (ditemukan 1,653 pasangan)",
+    "fix3_after": "1 catatan gabungan — salinan terbaik dipertahankan",
+    "fix3_chip": "✓ duplikat diselesaikan",
+    "fix4_title": "Perbaikan 4 — Teks Berantakan, Dibakukan (data demo)",
+    "fix4_chip": "✓ huruf & format dibakukan (data demo)",
+    "fix5_title": "Perbaikan 5 — Baris Prospek, Terverifikasi",
+    "fix5_before": "Bisnis ditemukan — tanpa sumber, tanpa cek email",
+    "fix5_after": "Bisnis + email publik + telepon, URL sumber pada baris",
+    "fix5_chip": "✓ terverifikasi dari sumber publik",
+    "counts_a": "Dari proyek katalog nyata:",
+    "counts_records": "9,692 catatan",
+    "counts_b": "dibaca ·",
+    "counts_dup": "1,653 pasangan duplikat",
+    "counts_c": "diselesaikan · setiap perubahan tercatat di laporan QC —",
+    "counts_d": "tidak ada yang berubah diam-diam",
+    "cta_sample": "Kirim file Anda — mulai dengan sampel gratis 25 baris",
+    "kicker_work": "03 — Karya Pilihan",
+    "work_h2": "Karya Pilihan",
+    "tag_real": "Pekerjaan nyata yang selesai",
+    "tag_demo": "Data demo — contoh pengerjaan",
+    "tag_real_sample": "Sampel nyata — data publik",
+    "case1_title": "Kasus 1 — Konsolidasi Katalog Perpustakaan",
+    "case1_desc": "Beberapa ekspor katalog perpustakaan digabung menjadi satu katalog induk yang bersih. Pasangan duplikat dideteksi dan diselesaikan, dan setiap catatan dilengkapi tajuk subjek dan klasifikasi DDC.",
+    "case1_stat2": "pasangan duplikat dideteksi & diselesaikan",
+    "plate01": "PLATE 01 — Konsolidasi Katalog",
+    "plate02": "PLATE 02 · Sebelum — data katalog gabungan mentah",
+    "plate03": "PLATE 03 · Sesudah — dibersihkan, dideduplikasi, diklasifikasi",
+    "case2_title": "Kasus 2 — Pembersihan Data Excel, Sebelum / Sesudah",
+    "case2_desc": "Contoh pekerjaan pembersihan pada umumnya menggunakan data demo: ejaan yang tidak konsisten, format tanggal campur, dan baris duplikat dibakukan menjadi satu tabel bersih. Data ini fiktif dan ditampilkan untuk memperlihatkan metode dan format hasil.",
+    "plate04": "PLATE 04 — Pembersihan Data",
+    "plate05": "PLATE 05 · Sebelum (data demo)",
+    "plate06": "PLATE 06 · Sesudah (data demo)",
+    "case3_title": "Kasus 3 — Rekap, Tabel Pivot & Dashboard",
+    "case3_desc": "Contoh alur rekap menggunakan data demo: tabel bersih diringkas dengan tabel pivot dan disajikan sebagai dashboard sederhana. Data ini fiktif dan ditampilkan untuk memperlihatkan metode dan format hasil.",
+    "plate07": "PLATE 07 — Rekap & Dashboard",
+    "plate08": "PLATE 08 · Tabel bersih (data demo)",
+    "plate09": "PLATE 09 · Ringkasan pivot (data demo)",
+    "plate10": "PLATE 10 · Dashboard (data demo)",
+    "case4_title": "Kasus 4 — Sampel Daftar Prospek B2B: 25 Bisnis Kesehatan AS",
+    "case4_desc": "Sampel nyata yang diriset dari sumber publik: 25 bisnis kesehatan di AS (dokter gigi, dermatologi, chiropractic, fisioterapi, veteriner, optometri, dan lainnya). Setiap dari 25 baris mencantumkan email dan nomor telepon bisnis yang publik, dan setiap baris mencantumkan URL sumber verifikasinya.",
+    "case4_stat1": "baris dengan email & telepon bisnis publik",
+    "case4_stat2": "baris dengan URL sumber",
+    "dl_xlsx": "Unduh sampel (.xlsx)",
+    "dl_csv": "Unduh sampel (.csv)",
+    "kicker_process": "04 — Proses",
+    "process_h2": "Cara Saya Bekerja — Kontrol Kualitas di Setiap Pekerjaan",
+    "plate11": "PLATE 11 — Metode & QC",
+    "step1_title": "Penerimaan & cek cakupan",
+    "step1_desc": " — kita menyepakati dengan tepat kolom/field apa saja yang masuk cakupan sebelum pekerjaan dimulai.",
+    "step2_title": "Pembersihan / katalogisasi",
+    "step2_desc": " — pekerjaan intinya: dedupe, pembakuan, klasifikasi, riset.",
+    "step3_title": "Tahap QC wajib",
+    "step3_desc": " — validasi format, cek deduplikasi kedua, dan verifikasi bahwa tidak ada kolom di luar cakupan yang berubah.",
+    "step4_title": "Pengiriman dengan laporan QC",
+    "step4_desc": " — Anda menerima file jadi plus laporan singkat tentang apa yang diubah dan ditemukan.",
+    "kicker_pricing": "05 — Harga",
+    "pricing_h2": "Harga — Klien Internasional",
+    "th_service": "Layanan",
+    "th_rate": "Tarif",
+    "price_row1": "Pekerjaan pembersihan data, katalogisasi, riset & rekap",
+    "price_from": "Mulai",
+    "price_rate1": "$10/jam",
+    "price_row2": "Proyek cakupan tetap (mis. daftar prospek atau satu batch katalog)",
+    "price_row2_rate": "Penawaran per proyek — tanyakan dengan cakupan dan tenggat Anda",
+    "pricing_note": "Untuk pekerjaan besar, Anda boleh mulai dari pekerjaan kecil berbayar atau sampel terlebih dahulu, sehingga Anda dapat memeriksa kualitas sebelum berkomitmen pada data lengkap.",
+    "kicker_contact": "07 — Kontak",
+    "contact_h2": "Kontak",
+    "contact_worker": "profil pekerja",
+    "dl_portfolio": "Unduh portofolio lengkap (PDF)",
+    "footer_text": "© 2026 Mochammad Nur Fakhruddin · Malang, Indonesia. Data demo di halaman ini bersifat fiktif dan dilabeli sebagai data demo; sampel daftar prospek hanya menggunakan data bisnis publik."
+  };
+  var DICT = { en: EN, id: ID };
+  function pickLang() {
+    try {
+      var s = localStorage.getItem('lang');
+      if (s === 'en' || s === 'id') return s;
+    } catch (e) {}
+    return (navigator.language || 'en').toLowerCase().indexOf('id') === 0 ? 'id' : 'en';
+  }
+  var lang = pickLang();
+  window.__currentLang = lang;
+  function apply(l) {
+    lang = (l === 'id') ? 'id' : 'en';
+    window.__currentLang = lang;
+    document.documentElement.setAttribute('lang', lang);
+    var dict = DICT[lang];
+    var nodes = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < nodes.length; i++) {
+      var k = nodes[i].getAttribute('data-i18n');
+      if (dict[k] != null) nodes[i].textContent = dict[k];
+    }
+    if (dict.meta_title) document.title = dict.meta_title;
+    var be = document.getElementById('langEn');
+    var bi = document.getElementById('langId');
+    if (be) be.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+    if (bi) bi.setAttribute('aria-pressed', lang === 'id' ? 'true' : 'false');
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    if (window.__syncThemeLabel) window.__syncThemeLabel();
+    if (window.__syncStepLabel) window.__syncStepLabel();
+  }
+  window.setLang = apply;
+  var be = document.getElementById('langEn');
+  var bi = document.getElementById('langId');
+  if (be) be.addEventListener('click', function () { apply('en'); });
+  if (bi) bi.addEventListener('click', function () { apply('id'); });
+  apply(lang);
+})();
+</script>
+
 <script>
 (function () {
   var btn = document.getElementById('themeToggle');
   if (!btn) return;
+  function curLang() { return window.__currentLang || document.documentElement.getAttribute('lang') || 'en'; }
   function sync() {
     var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var id = curLang() === 'id';
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
-    btn.textContent = dark ? '☀️ Light' : '🌙 Dark';
+    btn.textContent = dark ? (id ? '☀️ Terang' : '☀️ Light') : (id ? '🌙 Gelap' : '🌙 Dark');
   }
+  window.__syncThemeLabel = sync;
   btn.addEventListener('click', function () {
     var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
@@ -388,19 +679,33 @@ document.documentElement.classList.add('js');
   var prev = document.getElementById('prevBtn');
   var next = document.getElementById('nextBtn');
   var dotsWrap = document.getElementById('stepDots');
+  function curLang() { return window.__currentLang || document.documentElement.getAttribute('lang') || 'en'; }
+  function labelText() {
+    return curLang() === 'id'
+      ? 'Perbaikan ' + (i + 1) + ' dari ' + cards.length
+      : 'Fix ' + (i + 1) + ' of ' + cards.length;
+  }
+  function dotLabel(k) {
+    return curLang() === 'id' ? 'Ke perbaikan ' + (k + 1) : 'Go to fix ' + (k + 1);
+  }
   var dots = cards.map(function (_, k) {
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'dot';
-    b.setAttribute('aria-label', 'Go to fix ' + (k + 1));
+    b.setAttribute('aria-label', dotLabel(k));
     b.addEventListener('click', function () { stop(); show(k); });
     dotsWrap.appendChild(b);
     return b;
   });
+  function syncLabel() {
+    label.textContent = labelText();
+    dots.forEach(function (d, k) { d.setAttribute('aria-label', dotLabel(k)); });
+  }
+  window.__syncStepLabel = syncLabel;
   function show(n) {
     i = Math.max(0, Math.min(cards.length - 1, n));
     cards.forEach(function (c, k) { c.classList.toggle('active', k === i); });
     dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
-    label.textContent = 'Fix ' + (i + 1) + ' of ' + cards.length;
+    label.textContent = labelText();
     prev.disabled = (i === 0);
     next.disabled = (i === cards.length - 1);
     var c = cards[i];
@@ -421,12 +726,6 @@ document.documentElement.classList.add('js');
   }
 })();
 </script>
-
-<footer>
-  <div class="wrap">
-    <p>© 2026 Mochammad Nur Fakhruddin · Malang, Indonesia. Demo datasets on this page are fictional and labeled as such; lead-list samples use public business data only.</p>
-  </div>
-</footer>
 
 </body>
 </html>
