@@ -6,90 +6,107 @@
 <title>Mochammad Nur Fakhruddin — Library Data Specialist | Cataloguing, Data Cleaning, Lead Lists</title>
 <meta name="description" content="Freelance library data specialist based in Malang, Indonesia. Library cataloguing & DDC classification, Excel data cleaning and deduplication, pivot recaps and dashboards, web research & B2B lead lists from public data.">
 <style>
-  :root{color-scheme:light;--ink:#1c2733;--muted:#5a6a78;--accent:#0f6f5c;--accent-soft:#e6f3f0;--line:#dde5ea;--card:#ffffff;--bg:#f7f9fa;--warn:#8a6d1a;--warn-bg:#fdf6e0;--danger:#b03a2e;--on-accent:#ffffff}
-  :root[data-theme="dark"]{color-scheme:dark;--ink:#e9eff4;--muted:#a7b7c3;--accent:#2fbfa0;--accent-soft:#14332b;--line:#2c3e4c;--card:#18222d;--bg:#0d141b;--warn:#e6c65c;--warn-bg:#332d12;--danger:#e0685c;--on-accent:#052e25}
-  :root[data-theme="dark"] .case img,:root[data-theme="dark"] #process img{background:#ffffff;padding:6px}
-  .theme-row{display:flex;justify-content:flex-end;margin-bottom:6px}
-  .theme-toggle{padding:8px 14px;border:1px solid var(--line);border-radius:20px;background:var(--card);color:var(--ink);font-weight:600;font-size:.9rem;cursor:pointer}
-  .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+  :root{color-scheme:light;--serif:"Playfair Display",Didot,"Bodoni MT",Georgia,"Times New Roman",serif;--ink:#1a2420;--muted:#5c665f;--accent:#0b3d33;--accent-soft:#eef0e6;--gold:#b08d3e;--gold-text:#85662a;--line:#e2dbc9;--card:#fffdf9;--bg:#faf8f3;--warn:#7a5c10;--warn-bg:#f7efda;--danger:#a93226;--on-accent:#f7f3e8}
+  :root[data-theme="dark"]{color-scheme:dark;--ink:#ece8df;--muted:#a9b3ab;--accent:#8ec9ae;--accent-soft:#182420;--gold:#c9ab5e;--gold-text:#c9ab5e;--line:#27332c;--card:#141c19;--bg:#0c1210;--warn:#e6c65c;--warn-bg:#2e2a12;--danger:#e0685c;--on-accent:#f7f3e8}
+  ::selection{background:var(--gold);color:#141c19}
+  .theme-row{display:flex;justify-content:flex-end;margin-bottom:10px}
+  .theme-toggle{padding:9px 15px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--muted);font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+  .theme-toggle:hover{border-color:var(--gold);color:var(--ink)}
   @media (prefers-reduced-motion: no-preference){body{transition:background-color .25s ease,color .25s ease}}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
-  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-  header{background:var(--card);border-bottom:1px solid var(--line);padding:48px 0 36px}
-  h1{font-size:2rem;line-height:1.25;margin-bottom:6px}
-  .role{color:var(--accent);font-weight:600;font-size:1.1rem;margin-bottom:14px}
-  .lede{color:var(--muted);max-width:700px}
-  .meta{margin-top:16px;color:var(--muted);font-size:.95rem}
-  .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
-  .links a,.btn{display:inline-block;padding:9px 16px;border:1px solid var(--accent);border-radius:6px;color:var(--accent);text-decoration:none;font-weight:600;font-size:.95rem;background:var(--card)}
-  .links a:hover,.btn:hover{background:var(--accent-soft)}
-  .btn.primary{background:var(--accent);color:var(--on-accent)}
-  section{padding:36px 0 8px}
-  h2{font-size:1.45rem;margin-bottom:14px;border-bottom:2px solid var(--accent-soft);padding-bottom:6px}
-  h3{font-size:1.12rem;margin-bottom:6px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
-  .svc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
-  .svc p{color:var(--muted);font-size:.95rem}
-  .case{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:22px}
-  .case img{width:100%;height:auto;border-radius:6px;border:1px solid var(--line);margin:12px 0}
-  .ba{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media(max-width:640px){.ba{grid-template-columns:1fr}}
-  .ba figure{margin:0}
-  .ba figcaption{font-size:.88rem;color:var(--muted);margin-top:-6px;margin-bottom:8px}
-  .tag{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:8px}
-  .tag.real{background:var(--accent-soft);color:var(--accent)}
-  .tag.demo{background:var(--warn-bg);color:var(--warn)}
-  .stats{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0}
-  .stat{background:var(--accent-soft);border-radius:8px;padding:10px 14px;min-width:150px}
-  .stat b{display:block;font-size:1.15rem;color:var(--accent)}
-  .stat span{font-size:.85rem;color:var(--muted)}
-  ol.steps{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 20px 20px 40px}
-  ol.steps li{margin-bottom:10px}
-  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);font-size:.97rem}
-  th{background:var(--accent-soft)}
-  tr:last-child td{border-bottom:none}
-  .dl{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-  footer{border-top:1px solid var(--line);margin-top:36px;padding:26px 0 40px;color:var(--muted);font-size:.92rem;background:var(--card)}
-  footer a{color:var(--accent)}
-  .contact-list{list-style:none}
-  .contact-list li{margin-bottom:6px}
-  .offer{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:10px;padding:18px}
-  .offer p{color:var(--muted);font-size:.95rem;margin-bottom:12px}
-  .offer .price{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:.92rem;border-radius:6px;padding:5px 10px}
-  .intl-note{margin-top:14px;color:var(--muted);font-size:.95rem}
-  .trust{margin-top:18px;background:var(--accent-soft);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-align:center;font-weight:600;font-size:.97rem}
-  .small-note{color:var(--muted);font-size:.86rem;margin-top:6px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;font-size:1.02rem}
+  a{color:var(--accent)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+  header{border-bottom:1px solid var(--line);padding:64px 0 52px}
+  .byline{font-size:.82rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-text)}
+  .role{color:var(--accent);font-weight:600;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;margin-top:14px}
+  h1.display{font-family:var(--serif);font-size:clamp(2.5rem,6.2vw,4.3rem);line-height:1.06;font-weight:600;letter-spacing:-.01em;margin:20px 0 22px}
+  .lede{color:var(--muted);max-width:640px;font-size:1.07rem}
+  .hero-rule{height:1px;background:var(--gold);opacity:.7;margin-top:36px}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;padding-top:26px}
+  @media(max-width:640px){.hero-stats{grid-template-columns:1fr}}
+  .hstat b{display:block;font-family:var(--serif);font-size:2.15rem;font-weight:600;line-height:1.1;color:var(--ink)}
+  .hstat span{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .meta{margin-top:26px;color:var(--muted);font-size:.92rem}
+  .links{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+  .links a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:3px}
+  .links a:hover{color:var(--gold-text)}
+  .links a.cta,.btn.primary{background:var(--accent);border:1px solid var(--accent);color:var(--on-accent);padding:13px 22px}
+  .links a.cta:hover{color:var(--on-accent);opacity:.88}
+  :root[data-theme="dark"] .links a.cta,:root[data-theme="dark"] .btn.primary{background:transparent;border-color:var(--gold);color:var(--gold)}
+  :root[data-theme="dark"] .links a.cta:hover,:root[data-theme="dark"] .btn.primary:hover{color:var(--gold);opacity:.85}
+  section{padding:64px 0 10px}
+  .kicker{font-size:.74rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-text);margin-bottom:12px}
+  h2{font-family:var(--serif);font-size:1.95rem;font-weight:600;line-height:1.15;margin-bottom:28px;border-bottom:1px solid var(--line);padding-bottom:14px}
+  h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;margin-bottom:8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .offer{background:var(--card);border:1px solid var(--line);margin:0 -1px -1px 0;padding:32px 30px}
+  .offer .idx{display:block;font-family:var(--serif);font-size:2rem;font-weight:500;line-height:1;color:var(--gold);margin-bottom:16px}
+  .offer p{color:var(--muted);font-size:.96rem;margin-bottom:18px}
+  .offer .price{display:inline-block;border-top:1px solid var(--gold);padding-top:11px;color:var(--accent);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+  .intl-note{margin-top:20px;color:var(--muted);font-family:var(--serif);font-style:italic;font-size:1.06rem}
+  .trust{margin-top:28px;border-top:1px solid var(--gold);border-bottom:1px solid var(--line);padding:17px 8px;text-align:center;font-weight:600;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase}
+  .small-note{color:var(--muted);font-family:var(--serif);font-style:italic;font-size:.97rem;margin-top:-12px;margin-bottom:6px}
   .stepper-nav{display:none}
-  html.js .stepper-nav{display:flex;align-items:center;gap:14px;margin:14px 0 4px;flex-wrap:wrap}
-  .stepper-nav button.navbtn{padding:8px 16px;border:1px solid var(--accent);border-radius:6px;background:var(--card);color:var(--accent);font-weight:600;font-size:.95rem;cursor:pointer}
-  .stepper-nav button.navbtn:hover{background:var(--accent-soft)}
-  .stepper-nav button.navbtn:disabled{opacity:.4;cursor:default}
-  .step-label{font-weight:700;font-size:.95rem}
-  .dots{display:inline-flex;gap:7px}
-  .dots .dot{width:11px;height:11px;border-radius:50%;border:1px solid var(--accent);background:var(--card);padding:0;cursor:pointer}
-  .dots .dot.on{background:var(--accent)}
-  .fixcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:18px}
+  html.js .stepper-nav{display:flex;align-items:center;gap:16px;margin:16px 0 6px;flex-wrap:wrap}
+  .stepper-nav button.navbtn{padding:10px 18px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--ink);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+  .stepper-nav button.navbtn:hover{border-color:var(--gold);color:var(--gold-text)}
+  .stepper-nav button.navbtn:disabled{opacity:.35;cursor:default}
+  .step-label{font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .dots{display:inline-flex;gap:9px}
+  .dots .dot{width:9px;height:9px;border-radius:0;transform:rotate(45deg);border:1px solid var(--gold);background:transparent;padding:0;cursor:pointer}
+  .dots .dot.on{background:var(--gold)}
+  .fixcard{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:34px 32px;margin-bottom:20px}
   html.js .fixcard{display:none}
   html.js .fixcard.active{display:block}
-  .fixcard h3{margin-bottom:12px}
-  .fx-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:1rem}
-  .fx-k{flex:0 0 64px;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding-top:3px}
+  .fx-idx{display:block;font-family:var(--serif);font-size:1.7rem;font-weight:500;line-height:1;color:var(--gold);margin-bottom:12px}
+  .fixcard h3{font-size:1.35rem;margin-bottom:18px}
+  .fx-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .fx-k{flex:0 0 72px;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding-top:7px}
   .fx-before .fx-k{color:var(--danger)}
   .fx-after .fx-k{color:var(--accent)}
+  .fx-row .val,.fx-after>span:last-child{font-family:var(--serif);font-size:1.3rem;line-height:1.35}
   .fx-before .val{position:relative;color:var(--muted)}
   .fx-before .val::after{content:"";position:absolute;left:0;top:55%;height:2px;width:100%;background:var(--danger);transform:scaleX(0);transform-origin:left center}
   .fixcard.play .fx-before .val::after{animation:strike .5s ease .1s forwards}
   .fixcard.play .fx-after{animation:fadeup .5s ease .65s both}
-  .chip{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:600;font-size:.9rem;border-radius:6px;padding:5px 10px;margin-top:4px}
-  .counts{margin-top:14px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 16px;font-size:.97rem}
+  .chip{display:inline-block;background:transparent;color:var(--ink);border:1px solid var(--gold);font-weight:600;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;padding:7px 12px;margin-top:6px}
+  .counts{margin-top:16px;background:var(--card);border:1px solid var(--line);border-left:2px solid var(--gold);border-radius:0;padding:20px 22px;font-size:1rem}
+  .counts b{font-family:var(--serif);font-size:1.18rem}
   @keyframes strike{to{transform:scaleX(1)}}
   @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion: reduce){
     .fixcard.play .fx-before .val::after{animation:none;transform:scaleX(1)}
     .fixcard.play .fx-after{animation:none}
   }
+  .case{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:36px 34px;margin-bottom:28px}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid;margin-bottom:12px;background:transparent}
+  .tag.real{color:var(--accent);border-color:var(--accent)}
+  .tag.demo{color:var(--warn);border-color:var(--warn)}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:22px;margin:20px 0 8px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stat b{display:block;font-family:var(--serif);font-size:1.9rem;font-weight:600;line-height:1.15;color:var(--ink)}
+  .stat span{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .plate{margin:20px 0}
+  .case img,.plate img,#process img{width:100%;height:auto;background:#ffffff;padding:10px;border:1px solid var(--line);border-radius:0;margin:0}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:640px){.ba{grid-template-columns:1fr}}
+  .ba figure{margin:0}
+  figcaption{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+  ol.steps{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:30px 30px 30px 52px}
+  ol.steps li{margin-bottom:12px}
+  ol.steps li::marker{font-family:var(--serif);color:var(--gold);font-size:1.1rem}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line)}
+  th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line);font-size:.97rem}
+  th{background:transparent;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);border-bottom:1px solid var(--gold)}
+  tr:last-child td{border-bottom:none}
+  .dl{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+  .btn{display:inline-block;padding:13px 22px;border:1px solid var(--ink);border-radius:2px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;background:transparent}
+  .btn:hover{border-color:var(--gold);color:var(--gold-text)}
+  .btn.primary:hover{color:var(--on-accent);opacity:.88}
+  footer{border-top:1px solid var(--gold);margin-top:56px;padding:30px 0 44px;color:var(--muted);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;background:transparent}
+  footer a{color:var(--accent)}
+  .contact-list{list-style:none}
+  .contact-list li{margin-bottom:9px}
 </style>
 <script>
 document.documentElement.classList.add('js');
@@ -101,12 +118,19 @@ document.documentElement.classList.add('js');
 <header>
   <div class="wrap">
     <div class="theme-row"><button type="button" id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙 Dark</button></div>
-    <h1>Mochammad Nur Fakhruddin</h1>
+    <p class="byline">Mochammad Nur Fakhruddin</p>
     <p class="role">Library Data Specialist — Cataloguing, Data Cleaning &amp; Web Research</p>
-    <p class="lede"><b>Messy spreadsheets, catalogs and lists in — clean, verified data out.</b> Catalogues with subject headings and DDC classification, deduplicated spreadsheets, pivot recaps and dashboards, and B2B lead lists researched from public sources — every row traceable to its source.</p>
+    <h1 class="display">Messy spreadsheets, catalogs and lists in — clean, verified data out.</h1>
+    <p class="lede">Catalogues with subject headings and DDC classification, deduplicated spreadsheets, pivot recaps and dashboards, and B2B lead lists researched from public sources — every row traceable to its source.</p>
+    <div class="hero-rule"></div>
+    <div class="hero-stats">
+      <div class="hstat"><b>9,692</b><span>records merged &amp; cleaned</span></div>
+      <div class="hstat"><b>1,653</b><span>duplicate pairs resolved</span></div>
+      <div class="hstat"><b>100%</b><span>records completed with subject headings &amp; DDC</span></div>
+    </div>
     <p class="meta">B.Sc. in Library &amp; Information Science, UIN Maulana Malik Ibrahim Malang (2026, GPA 3.46) · Based in Malang, Indonesia · Working with clients locally and internationally</p>
     <div class="links">
-      <a href="mailto:ongisnadefafa@gmail.com">Email me</a>
+      <a class="cta" href="mailto:ongisnadefafa@gmail.com">Email me</a>
       <a href="https://www.freelancer.com/u/nurfakhruddin" target="_blank" rel="noopener">Freelancer</a>
       <a href="https://fastwork.id/user/v9phnd4s" target="_blank" rel="noopener">Fastwork</a>
       <a href="https://projects.co.id/public/browse_users/view/564e70/mochammad-nur-fakhruddin" target="_blank" rel="noopener">Projects.co.id</a>
@@ -119,24 +143,29 @@ document.documentElement.classList.add('js');
 <main class="wrap">
 
   <section id="offers">
+    <p class="kicker">01 — Services</p>
     <h2>What I Offer — Everything Up Front</h2>
     <div class="grid">
       <div class="offer">
+        <span class="idx">01</span>
         <h3>Library Cataloguing &amp; DDC</h3>
         <p>Your school or campus library catalogue, completed and cleaned: subject headings, DDC call numbers, duplicates merged, SLiMS-ready.</p>
         <span class="price">from Rp149.000 / 100 titles</span>
       </div>
       <div class="offer">
+        <span class="idx">02</span>
         <h3>Excel Data Cleaning &amp; Deduplication</h3>
         <p>Your messy spreadsheet back as one clean file: duplicates removed, names, dates and formats standardised — with a QC report of every change.</p>
         <span class="price">from Rp99.000</span>
       </div>
       <div class="offer">
+        <span class="idx">03</span>
         <h3>Recap, Pivot &amp; Dashboards</h3>
         <p>Your raw table turned into recaps, pivot summaries and a simple dashboard your team can actually read and reuse.</p>
         <span class="price">from Rp149.000</span>
       </div>
       <div class="offer">
+        <span class="idx">04</span>
         <h3>Web Research &amp; Lead Lists</h3>
         <p>A structured B2B lead list built only from public data — every row verified and carrying its source URL, so you can check each record yourself.</p>
         <span class="price">free 25-row sample first, then a fixed quote</span>
@@ -147,6 +176,7 @@ document.documentElement.classList.add('js');
   </section>
 
   <section id="walkthrough">
+    <p class="kicker">02 — Walkthrough</p>
     <h2>See Exactly What Changes</h2>
     <p class="small-note">Illustrative rows — transformations from real projects.</p>
     <div class="stepper-nav">
@@ -157,30 +187,35 @@ document.documentElement.classList.add('js');
     </div>
     <div id="stepper">
       <article class="fixcard">
+        <span class="fx-idx">01</span>
         <h3>Fix 1 — Author Names, Standardised</h3>
         <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Fakhruddin, Moch. N. (penulis)</span></div>
         <div class="fx-row fx-after"><span class="fx-k">After</span><span>Fakhruddin, Mochammad Nur</span></div>
         <span class="chip">✓ role labels removed, name standardized</span>
       </article>
       <article class="fixcard">
+        <span class="fx-idx">02</span>
         <h3>Fix 2 — Empty Subjects &amp; DDC, Completed</h3>
         <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Subject: — (empty) · DDC: —</span></div>
         <div class="fx-row fx-after"><span class="fx-k">After</span><span>Subject: Library cataloguing · DDC filled</span></div>
         <span class="chip">✓ 100% of 9,692 records completed</span>
       </article>
       <article class="fixcard">
+        <span class="fx-idx">03</span>
         <h3>Fix 3 — Duplicates, Merged</h3>
         <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Same title × 2 rows (1,653 pairs found)</span></div>
         <div class="fx-row fx-after"><span class="fx-k">After</span><span>1 merged record — best copy kept</span></div>
         <span class="chip">✓ duplicates resolved</span>
       </article>
       <article class="fixcard">
+        <span class="fx-idx">04</span>
         <h3>Fix 4 — Messy Text, Standardised (demo data)</h3>
         <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">jOHN&nbsp; doe — JOHN@GMAIL,COM</span></div>
         <div class="fx-row fx-after"><span class="fx-k">After</span><span>John Doe — john@gmail.com</span></div>
         <span class="chip">✓ case &amp; format standardized (demo data)</span>
       </article>
       <article class="fixcard">
+        <span class="fx-idx">05</span>
         <h3>Fix 5 — Lead Rows, Verified</h3>
         <div class="fx-row fx-before"><span class="fx-k">Before</span><span class="val">Business found — no source, no email check</span></div>
         <div class="fx-row fx-after"><span class="fx-k">After</span><span>Business + public email + phone, source URL on the row</span></div>
@@ -194,6 +229,7 @@ document.documentElement.classList.add('js');
   </section>
 
   <section id="work">
+    <p class="kicker">03 — Selected Work</p>
     <h2>Selected Work</h2>
 
     <div class="case">
@@ -205,15 +241,15 @@ document.documentElement.classList.add('js');
         <div class="stat"><b>1,653</b><span>duplicate pairs detected &amp; resolved</span></div>
         <div class="stat"><b>100%</b><span>records completed with subject headings &amp; DDC</span></div>
       </div>
-      <img src="Porto_1_Katalog.jpg" alt="Case study card: library catalog consolidation, 9,692 records">
+      <figure class="plate"><img src="Porto_1_Katalog.jpg" alt="Case study card: library catalog consolidation, 9,692 records"><figcaption>PLATE 01 — Catalog Consolidation</figcaption></figure>
       <div class="ba">
         <figure>
           <img src="V2_1a_Katalog_Sebelum.jpg" alt="Catalogue data before cleaning">
-          <figcaption>Before — raw merged catalogue data</figcaption>
+          <figcaption>PLATE 02 · Before — raw merged catalogue data</figcaption>
         </figure>
         <figure>
           <img src="V2_1b_Katalog_Sesudah.jpg" alt="Catalogue data after cleaning and DDC classification">
-          <figcaption>After — cleaned, deduplicated, classified</figcaption>
+          <figcaption>PLATE 03 · After — cleaned, deduplicated, classified</figcaption>
         </figure>
       </div>
     </div>
@@ -222,15 +258,15 @@ document.documentElement.classList.add('js');
       <span class="tag demo">Demo dataset — example work</span>
       <h3>Case 2 — Excel Data Cleaning, Before / After</h3>
       <p>Example of a typical cleaning job on a demonstration dataset: inconsistent spellings, mixed date formats and duplicate rows standardised into one clean table. The dataset is fictional and shown to demonstrate method and output format.</p>
-      <img src="Porto_2_DataCleaning.jpg" alt="Case study card: Excel data cleaning">
+      <figure class="plate"><img src="Porto_2_DataCleaning.jpg" alt="Case study card: Excel data cleaning"><figcaption>PLATE 04 — Data Cleaning</figcaption></figure>
       <div class="ba">
         <figure>
           <img src="V2_2a_Cleaning_Sebelum.jpg" alt="Spreadsheet before cleaning (demo data)">
-          <figcaption>Before (demo data)</figcaption>
+          <figcaption>PLATE 05 · Before (demo data)</figcaption>
         </figure>
         <figure>
           <img src="V2_2b_Cleaning_Sesudah.jpg" alt="Spreadsheet after cleaning (demo data)">
-          <figcaption>After (demo data)</figcaption>
+          <figcaption>PLATE 06 · After (demo data)</figcaption>
         </figure>
       </div>
     </div>
@@ -239,18 +275,18 @@ document.documentElement.classList.add('js');
       <span class="tag demo">Demo dataset — example work</span>
       <h3>Case 3 — Recap, Pivot Table &amp; Dashboard</h3>
       <p>Example recap workflow on a demonstration dataset: a cleaned table summarised with pivot tables and presented as a simple dashboard. The dataset is fictional and shown to demonstrate method and output format.</p>
-      <img src="Porto_3_OlahData.jpg" alt="Case study card: recap, pivot and dashboard">
+      <figure class="plate"><img src="Porto_3_OlahData.jpg" alt="Case study card: recap, pivot and dashboard"><figcaption>PLATE 07 — Recap &amp; Dashboard</figcaption></figure>
       <div class="ba">
         <figure>
           <img src="V2_3_OlahData_TabelBersih.jpg" alt="Cleaned table (demo data)">
-          <figcaption>Clean table (demo data)</figcaption>
+          <figcaption>PLATE 08 · Clean table (demo data)</figcaption>
         </figure>
         <figure>
           <img src="V2_4_OlahData_Pivot.jpg" alt="Pivot summary (demo data)">
-          <figcaption>Pivot summary (demo data)</figcaption>
+          <figcaption>PLATE 09 · Pivot summary (demo data)</figcaption>
         </figure>
       </div>
-      <img src="V2_5_OlahData_Dashboard.jpg" alt="Dashboard view (demo data)">
+      <figure class="plate"><img src="V2_5_OlahData_Dashboard.jpg" alt="Dashboard view (demo data)"><figcaption>PLATE 10 · Dashboard (demo data)</figcaption></figure>
     </div>
 
     <div class="case">
@@ -269,8 +305,9 @@ document.documentElement.classList.add('js');
   </section>
 
   <section id="process">
+    <p class="kicker">04 — Process</p>
     <h2>How I Work — Quality Control on Every Job</h2>
-    <img src="Porto_4_MetodeQC.jpg" alt="Four-step working method and QC" style="width:100%;height:auto;border-radius:6px;border:1px solid var(--line);margin-bottom:16px">
+    <figure class="plate"><img src="Porto_4_MetodeQC.jpg" alt="Four-step working method and QC"><figcaption>PLATE 11 — Method &amp; QC</figcaption></figure>
     <ol class="steps">
       <li><b>Intake &amp; scope check</b> — we agree exactly which columns/fields are in scope before work starts.</li>
       <li><b>Cleaning / cataloguing</b> — the work itself: dedupe, standardise, classify, research.</li>
@@ -280,6 +317,7 @@ document.documentElement.classList.add('js');
   </section>
 
   <section id="pricing">
+    <p class="kicker">05 — Pricing</p>
     <h2>Pricing — International Clients</h2>
     <table>
       <tr><th>Service</th><th>Rate</th></tr>
@@ -290,6 +328,7 @@ document.documentElement.classList.add('js');
   </section>
 
   <section id="indonesia" lang="id">
+    <p class="kicker">06 — Indonesia</p>
     <h2>Untuk Klien Indonesia — Perpustakaan &amp; Bisnis Lokal</h2>
     <p style="margin-bottom:14px">Saya membantu perpustakaan sekolah/kampus dan bisnis di Indonesia merapikan data: katalogisasi &amp; klasifikasi DDC, pembersihan dan deduplikasi data Excel, rekap &amp; pivot, serta riset daftar kontak bisnis dari data publik. Setiap pekerjaan melewati QC dan disertai laporan perubahan.</p>
     <table>
@@ -304,6 +343,7 @@ document.documentElement.classList.add('js');
   </section>
 
   <section id="contact">
+    <p class="kicker">07 — Contact</p>
     <h2>Contact</h2>
     <ul class="contact-list">
       <li>Email: <a href="mailto:ongisnadefafa@gmail.com">ongisnadefafa@gmail.com</a></li>
