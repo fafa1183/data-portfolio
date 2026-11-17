@@ -238,6 +238,22 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
   header:before{width:56vw;height:56vw;right:-28vw;top:-24vw}
   .offer,.offer.wide{padding-bottom:76px}
 }
+
+/* V5 (Muse, 17 Nov 2026): hero plate strip, sticky mobile CTA, merged pricing */
+.hero-plate{margin-top:38px}
+.hero-plate .ba{gap:14px}
+.hero-plate img{width:100%;height:auto;display:block;background:#fff;border:1px solid rgba(255,255,255,.35)}
+.hero-plate figcaption{color:#c4d1d4}
+.hero-plate-label{margin-top:14px;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}
+.sticky-cta{display:none}
+@media(max-width:700px){
+  .sticky-cta{display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:var(--orange);color:#fff;text-align:center;text-decoration:none;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:14px 16px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  body{padding-bottom:70px}
+}
+.pricing-id{margin-top:46px;border-top:1px solid var(--line);padding-top:38px}
+.pricing-id h3{font-family:var(--serif);font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:400;line-height:1.05;letter-spacing:-.03em;margin-bottom:16px}
+.pricing-id table{margin-top:22px}
+.mid-cta{margin-top:24px}
 </style>
 </head>
 <body>
@@ -270,6 +286,19 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
       <a href="https://projects.co.id/public/browse_users/view/564e70/mochammad-nur-fakhruddin" target="_blank" rel="noopener">Projects.co.id</a>
       <a href="https://www.linkedin.com/in/mochammad-nur-fakhruddin-0166ba426/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="Portfolio_Mochammad_Nur_Fakhruddin.pdf" data-i18n="portfolio_pdf">Portfolio PDF</a>
+    </div>
+    <div class="hero-plate">
+      <div class="ba">
+        <figure>
+          <img src="V2_1a_Katalog_Sebelum.jpg" alt="Catalogue data before cleaning">
+          <figcaption data-i18n="plate02">PLATE 02 · Before — raw merged catalogue data</figcaption>
+        </figure>
+        <figure>
+          <img src="V2_1b_Katalog_Sesudah.jpg" alt="Catalogue data after cleaning and DDC classification">
+          <figcaption data-i18n="plate03">PLATE 03 · After — cleaned, deduplicated, classified</figcaption>
+        </figure>
+      </div>
+      <p class="hero-plate-label" data-i18n="hero_plate_label">From the real project — 9,692 catalogue records, before → after</p>
     </div>
   </div>
 </header>
@@ -394,6 +423,9 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
           <figcaption data-i18n="plate03">PLATE 03 · After — cleaned, deduplicated, classified</figcaption>
         </figure>
       </div>
+      <div class="dl mid-cta">
+        <a class="btn primary" href="#contact" data-i18n="cta_sample">Send me your file — start with a free 25-row sample</a>
+      </div>
     </div>
 
     <div class="case">
@@ -460,13 +492,26 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
 
   <section id="pricing">
     <p class="kicker" data-i18n="kicker_pricing">05 — Pricing</p>
-    <h2 data-i18n="pricing_h2">Pricing — International Clients</h2>
+    <h2 data-i18n="pricing_h2">Pricing</h2>
     <table>
       <tr><th data-i18n="th_service">Service</th><th data-i18n="th_rate">Rate</th></tr>
       <tr><td data-i18n="price_row1">Data cleaning, cataloguing, research &amp; recap work</td><td><span data-i18n="price_from">From</span> <b data-i18n="price_rate1">$10/hour</b></td></tr>
       <tr><td data-i18n="price_row2">Fixed-scope projects (e.g. a lead list or a catalogue batch)</td><td data-i18n="price_row2_rate">Project-based quote — ask with your scope and deadline</td></tr>
     </table>
     <p style="margin-top:10px;color:var(--muted)" data-i18n="pricing_note">A small paid or sample-first start is welcome on larger jobs, so you can check quality before committing to the full dataset.</p>
+    <div class="pricing-id" lang="id">
+      <h3>Untuk Klien Indonesia — Perpustakaan &amp; Bisnis Lokal</h3>
+      <p style="margin-bottom:14px">Saya membantu perpustakaan sekolah/kampus dan bisnis di Indonesia merapikan data: katalogisasi &amp; klasifikasi DDC, pembersihan dan deduplikasi data Excel, rekap &amp; pivot, serta riset daftar kontak bisnis dari data publik. Setiap pekerjaan melewati QC dan disertai laporan perubahan.</p>
+      <table>
+        <tr><th>Layanan</th><th>Harga</th></tr>
+        <tr><td>Katalogisasi &amp; klasifikasi DDC — 100 judul</td><td>Rp119.000</td></tr>
+        <tr><td>Katalogisasi &amp; klasifikasi DDC — 500 judul</td><td>Rp399.000</td></tr>
+        <tr><td>Katalogisasi &amp; klasifikasi DDC — 1.000 judul</td><td>Rp719.000</td></tr>
+        <tr><td>Add-on impor SLiMS</td><td>+ Rp79.000</td></tr>
+        <tr><td>Data cleaning Excel (dedupe, standarisasi format)</td><td>Mulai Rp79.000</td></tr>
+      </table>
+      <p style="margin-top:10px;color:var(--muted)">Pesan langsung via email atau melalui <a href="https://fastwork.id/user/v9phnd4s" target="_blank" rel="noopener">Fastwork</a> dan <a href="https://projects.co.id/public/browse_users/view/564e70/mochammad-nur-fakhruddin" target="_blank" rel="noopener">Projects.co.id</a>.</p>
+    </div>
   </section>
 
   <section id="faq">
@@ -496,23 +541,8 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
     </div>
   </section>
 
-  <section id="indonesia" lang="id">
-    <p class="kicker">07 — Indonesia</p>
-    <h2>Untuk Klien Indonesia — Perpustakaan &amp; Bisnis Lokal</h2>
-    <p style="margin-bottom:14px">Saya membantu perpustakaan sekolah/kampus dan bisnis di Indonesia merapikan data: katalogisasi &amp; klasifikasi DDC, pembersihan dan deduplikasi data Excel, rekap &amp; pivot, serta riset daftar kontak bisnis dari data publik. Setiap pekerjaan melewati QC dan disertai laporan perubahan.</p>
-    <table>
-      <tr><th>Layanan</th><th>Harga</th></tr>
-      <tr><td>Katalogisasi &amp; klasifikasi DDC — 100 judul</td><td>Rp119.000</td></tr>
-      <tr><td>Katalogisasi &amp; klasifikasi DDC — 500 judul</td><td>Rp399.000</td></tr>
-      <tr><td>Katalogisasi &amp; klasifikasi DDC — 1.000 judul</td><td>Rp719.000</td></tr>
-      <tr><td>Add-on impor SLiMS</td><td>+ Rp79.000</td></tr>
-      <tr><td>Data cleaning Excel (dedupe, standarisasi format)</td><td>Mulai Rp79.000</td></tr>
-    </table>
-    <p style="margin-top:10px;color:var(--muted)">Pesan langsung via email atau melalui <a href="https://fastwork.id/user/v9phnd4s" target="_blank" rel="noopener">Fastwork</a> dan <a href="https://projects.co.id/public/browse_users/view/564e70/mochammad-nur-fakhruddin" target="_blank" rel="noopener">Projects.co.id</a>.</p>
-  </section>
-
   <section id="contact">
-    <p class="kicker" data-i18n="kicker_contact">08 — Contact</p>
+    <p class="kicker" data-i18n="kicker_contact">07 — Contact</p>
     <h2 data-i18n="contact_h2">Contact</h2>
     <ul class="contact-list">
       <li>Email: <a href="mailto:ongisnadefafa@gmail.com">ongisnadefafa@gmail.com</a></li>
@@ -547,6 +577,8 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
     "meta": "B.Sc. in Library & Information Science, UIN Maulana Malik Ibrahim Malang (2026, GPA 3.46) · Based in Malang, Indonesia · Working with clients locally and internationally",
     "email_me": "Email me",
     "portfolio_pdf": "Portfolio PDF",
+    "hero_plate_label": "From the real project — 9,692 catalogue records, before → after",
+    "sticky_cta": "Free 25-row sample — Email me",
     "kicker_services": "01 — Services",
     "offers_h2": "What I Offer — Everything Up Front",
     "offer1_name": "Library Cataloguing & DDC",
@@ -636,7 +668,7 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
     "step4_title": "Delivery with a QC report",
     "step4_desc": " — you receive the finished file plus a short report of what was changed and found.",
     "kicker_pricing": "05 — Pricing",
-    "pricing_h2": "Pricing — International Clients",
+    "pricing_h2": "Pricing",
     "th_service": "Service",
     "th_rate": "Rate",
     "price_row1": "Data cleaning, cataloguing, research & recap work",
@@ -645,7 +677,7 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
     "price_row2": "Fixed-scope projects (e.g. a lead list or a catalogue batch)",
     "price_row2_rate": "Project-based quote — ask with your scope and deadline",
     "pricing_note": "A small paid or sample-first start is welcome on larger jobs, so you can check quality before committing to the full dataset.",
-    "kicker_contact": "08 — Contact",
+    "kicker_contact": "07 — Contact",
     "contact_h2": "Contact",
     "contact_worker": "worker profile",
     "dl_portfolio": "Download full portfolio (PDF)",
@@ -679,6 +711,8 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
     "meta": "S1 Perpustakaan & Sains Informasi, UIN Maulana Malik Ibrahim Malang (2026, IPK 3.46) · Berbasis di Malang, Indonesia · Melayani klien lokal dan internasional",
     "email_me": "Kirim Email",
     "portfolio_pdf": "Portofolio PDF",
+    "hero_plate_label": "Dari proyek nyata — 9.692 baris katalog, sebelum → sesudah",
+    "sticky_cta": "Sampel gratis 25 baris — Kirim Email",
     "kicker_services": "01 — Layanan",
     "offers_h2": "Yang Saya Tawarkan — Semua Jelas di Depan",
     "offer1_name": "Katalogisasi Perpustakaan & DDC",
@@ -768,7 +802,7 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
     "step4_title": "Pengiriman dengan laporan QC",
     "step4_desc": " — Anda menerima file jadi plus laporan singkat tentang apa yang diubah dan ditemukan.",
     "kicker_pricing": "05 — Harga",
-    "pricing_h2": "Harga — Klien Internasional",
+    "pricing_h2": "Harga",
     "th_service": "Layanan",
     "th_rate": "Tarif",
     "price_row1": "Pekerjaan pembersihan data, katalogisasi, riset & rekap",
@@ -777,7 +811,7 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
     "price_row2": "Proyek cakupan tetap (mis. daftar prospek atau satu batch katalog)",
     "price_row2_rate": "Penawaran per proyek — tanyakan dengan cakupan dan tenggat Anda",
     "pricing_note": "Untuk pekerjaan besar, Anda boleh mulai dari pekerjaan kecil berbayar atau sampel terlebih dahulu, sehingga Anda dapat memeriksa kualitas sebelum berkomitmen pada data lengkap.",
-    "kicker_contact": "08 — Kontak",
+    "kicker_contact": "07 — Kontak",
     "contact_h2": "Kontak",
     "contact_worker": "profil pekerja",
     "dl_portfolio": "Unduh portofolio lengkap (PDF)",
@@ -926,6 +960,8 @@ table{background:var(--paper);border:1px solid var(--line);border-radius:2px;ove
   }
 })();
 </script>
+
+<a class="sticky-cta" href="mailto:ongisnadefafa@gmail.com" data-i18n="sticky_cta">Free 25-row sample — Email me</a>
 
 </body>
 </html>
