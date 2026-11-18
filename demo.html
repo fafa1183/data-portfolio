@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Data-Cleaning Demo — Portfafa Data Practice</title>
+<meta name="description" content="Try it yourself: paste a messy contact list and watch duplicates, inconsistent names, emails and phone numbers get cleaned instantly — 100% in your browser, nothing is uploaded.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --font-serif:"Newsreader",Georgia,"Times New Roman",serif;
+    --font-sans:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --bg:#F6F2E9; --bg-alt:#EDE7DA; --surface:#FCFBF7; --surface-elev:#FFFFFF;
+    --ink:#141A17; --ink-2:#2B3530; --muted:#525E57;
+    --rule:#D5CDBA; --rule-strong:#141A17;
+    --accent:#B83A1B; --accent-hover:#942B11; --accent-soft:#F9EAE5;
+    --forest:#154235; --forest-soft:#E4EDE9;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font-sans);font-size:1rem;line-height:1.65;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px 72px}
+  .masthead{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0 14px;border-bottom:2px solid var(--rule-strong);flex-wrap:wrap}
+  .brand{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.14em;font-weight:600}
+  .brand a{color:inherit;text-decoration:none}
+  .mast-actions{display:flex;gap:10px;align-items:center}
+  .btn{display:inline-block;font-family:var(--font-sans);font-weight:600;font-size:.95rem;border:2px solid var(--rule-strong);background:var(--surface);color:var(--ink);padding:9px 18px;border-radius:999px;cursor:pointer;text-decoration:none;transition:all .15s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-accent{background:var(--accent);border-color:var(--accent);color:#FCFBF7}
+  .btn-accent:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+  .btn-forest{background:var(--forest);border-color:var(--forest);color:#FCFBF7}
+  .btn-ghost{border-color:var(--rule)}
+  .lang-toggle{display:flex;border:2px solid var(--rule-strong);border-radius:999px;overflow:hidden}
+  .lang-toggle button{border:0;background:var(--surface);font-family:var(--font-mono);font-size:.8rem;padding:8px 13px;cursor:pointer;color:var(--muted)}
+  .lang-toggle button.on{background:var(--ink);color:var(--bg);font-weight:600}
+  .kicker{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.16em;color:var(--accent);font-weight:600;margin:38px 0 8px}
+  h1{font-family:var(--font-serif);font-weight:600;font-size:clamp(2.1rem,5.2vw,3.4rem);line-height:1.08;margin:0 0 14px}
+  .lede{font-size:1.08rem;color:var(--ink-2);max-width:46rem;margin:0 0 6px}
+  .privacy{display:inline-flex;gap:8px;align-items:center;background:var(--forest-soft);border:1px solid var(--forest);color:var(--forest);border-radius:999px;padding:5px 14px;font-size:.86rem;font-weight:600;margin:10px 0 26px}
+  .panel{background:var(--surface);border:1.5px solid var(--rule-strong);border-radius:var(--radius);padding:20px;margin-bottom:22px;box-shadow:6px 6px 0 rgba(20,26,23,.08)}
+  .panel h2{font-family:var(--font-serif);font-size:1.35rem;margin:0 0 4px;font-weight:600}
+  .panel .hint{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+  textarea{width:100%;min-height:230px;font-family:var(--font-mono);font-size:.82rem;line-height:1.55;padding:14px;border:1.5px solid var(--rule);border-radius:10px;background:var(--surface-elev);color:var(--ink);resize:vertical}
+  textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px 22px;margin:6px 0 4px}
+  .opts label{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;cursor:pointer;padding:6px 0}
+  .opts input{margin-top:5px;accent-color:var(--accent);width:17px;height:17px;flex:none}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+  .stats{display:none;gap:10px;flex-wrap:wrap;margin:0 0 16px}
+  .stats.show{display:flex}
+  .chip{font-family:var(--font-mono);font-size:.85rem;background:var(--ink);color:var(--bg);border-radius:10px;padding:9px 14px}
+  .chip b{color:#FFD9CE;font-size:1.02rem}
+  .chip.alt{background:var(--forest)}
+  .tablebox{overflow:auto;border:1.5px solid var(--rule);border-radius:10px;max-height:430px;background:var(--surface-elev)}
+  table{border-collapse:collapse;width:100%;font-size:.88rem}
+  th{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.06em;text-align:left;background:var(--bg-alt);padding:9px 12px;border-bottom:1.5px solid var(--rule-strong);position:sticky;top:0}
+  td{padding:8px 12px;border-bottom:1px solid var(--rule);white-space:nowrap}
+  tr:nth-child(even) td{background:#FBF9F3}
+  .empty{color:var(--muted);font-size:.95rem;padding:8px 2px}
+  .cta{background:var(--ink);color:var(--bg);border-radius:var(--radius);padding:28px 26px;margin-top:30px}
+  .cta h2{font-family:var(--font-serif);color:var(--bg);font-size:1.6rem;margin:0 0 8px;font-weight:600}
+  .cta p{color:#D8D2C2;margin:0 0 18px;max-width:44rem}
+  .cta .btn{border-color:var(--bg)}
+  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--rule);color:var(--muted);font-size:.86rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  footer a{color:var(--accent);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand"><a href="index.html">PORTFAFA · DATA PRACTICE</a></div>
+    <div class="mast-actions">
+      <a class="btn btn-ghost" href="index.html" data-i18n="back">← Portfolio</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" id="lang-en" class="on">EN</button>
+        <button type="button" id="lang-id">ID</button>
+      </div>
+    </div>
+  </header>
+
+  <p class="kicker" data-i18n="kicker">LIVE DEMO — DATA CLEANING</p>
+  <h1 data-i18n="h1">Messy in. Clean out.</h1>
+  <p class="lede" data-i18n="lede">This is a working miniature of my data-cleaning service. Paste a messy list — or just run the sample below — and watch duplicates, shouting-caps names, stray spaces, mixed-up emails and five different phone formats become one clean table.</p>
+  <div class="privacy"><span aria-hidden="true">✓</span><span data-i18n="privacy">100% private: everything runs in your browser. Nothing is uploaded, stored, or sent anywhere.</span></div>
+
+  <section class="panel">
+    <h2 data-i18n="in_h">1 · Your messy data</h2>
+    <p class="hint" data-i18n="in_hint">CSV or paste straight from Excel/Sheets (tabs work too). First row must be the header. Recognised columns: name, email, phone, city — everything else is trimmed and tidied.</p>
+    <textarea id="input" spellcheck="false"></textarea>
+    <div class="actions">
+      <button type="button" class="btn btn-ghost" id="btn-sample" data-i18n="btn_sample">Reload sample data</button>
+      <button type="button" class="btn btn-ghost" id="btn-clear" data-i18n="btn_clear">Clear</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 data-i18n="opt_h">2 · Cleaning rules</h2>
+    <div class="opts">
+      <label><input type="checkbox" id="opt-trim" checked><span data-i18n="opt_trim">Trim &amp; collapse extra spaces</span></label>
+      <label><input type="checkbox" id="opt-case" checked><span data-i18n="opt_case">Title-case names &amp; cities (BUDI SANTOSO → Budi Santoso)</span></label>
+      <label><input type="checkbox" id="opt-email" checked><span data-i18n="opt_email">Lowercase emails &amp; remove spaces inside them</span></label>
+      <label><input type="checkbox" id="opt-phone" checked><span data-i18n="opt_phone">Normalise Indonesian phone numbers to +62 format</span></label>
+      <label><input type="checkbox" id="opt-dupe" checked><span data-i18n="opt_dupe">Remove exact duplicate rows</span></label>
+      <label><input type="checkbox" id="opt-dupeemail" checked><span data-i18n="opt_dupeemail">Remove duplicates by email (keep the first)</span></label>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn btn-accent" id="btn-run" data-i18n="btn_run">Clean my data →</button>
+    </div>
+  </section>
+
+  <section class="panel" id="out-panel">
+    <h2 data-i18n="out_h">3 · Clean result</h2>
+    <div class="stats" id="stats"></div>
+    <p class="empty" id="out-empty" data-i18n="out_empty">Nothing here yet — press “Clean my data” and the result appears in place.</p>
+    <div class="tablebox" id="tablebox" style="display:none"><table id="out-table"></table></div>
+    <div class="actions">
+      <button type="button" class="btn btn-forest" id="btn-download" style="display:none" data-i18n="btn_download">Download cleaned CSV</button>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 data-i18n="cta_h">Your real data is bigger — and messier?</h2>
+    <p data-i18n="cta_p">This demo handles the classic mess. Real files add broken formulas, merged cells, five spellings of the same customer and duplicates that almost match. That is the part I do for a living — with a QC report, so you can prove what changed.</p>
+    <div class="actions" style="margin-top:0">
+      <a class="btn btn-accent" href="https://fastwork.id/user/v9phnd4s/data-entry-73138241" target="_blank" rel="noopener" data-i18n="cta_fw">Order data cleaning on Fastwork</a>
+      <a class="btn" href="https://lynk.id/pixelin" target="_blank" rel="noopener" data-i18n="cta_lynk">Templates &amp; guides on Lynk</a>
+      <a class="btn" href="mailto:ongisnadefafa@gmail.com" data-i18n="cta_mail">Email me</a>
+    </div>
+  </section>
+
+  <footer>
+    <span data-i18n="foot_l">© 2026 Mochammad Nur Fakhruddin — Library Data Specialist, Malang, Indonesia.</span>
+    <span><a href="index.html" data-i18n="back2">Back to portfolio</a></span>
+  </footer>
+</div>
+
+<script>
+// === LOGIC START ===
+function detectDelimiter(firstLine){
+  if(firstLine.indexOf('\t') >= 0) return '\t';
+  var semis = (firstLine.match(/;/g)||[]).length;
+  var commas = (firstLine.match(/,/g)||[]).length;
+  return semis > commas ? ';' : ',';
+}
+function parseDelimited(text, delim){
+  var rows = [], row = [], cell = '', inQ = false, i, ch;
+  text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  for(i = 0; i < text.length; i++){
+    ch = text[i];
+    if(inQ){
+      if(ch === '"'){
+        if(text[i+1] === '"'){ cell += '"'; i++; }
+        else inQ = false;
+      } else cell += ch;
+    } else if(ch === '"'){ inQ = true; }
+    else if(ch === delim){ row.push(cell); cell = ''; }
+    else if(ch === '\n'){ row.push(cell); rows.push(row); row = []; cell = ''; }
+    else cell += ch;
+  }
+  if(cell.length > 0 || row.length > 0){ row.push(cell); rows.push(row); }
+  return rows.filter(function(r){ return r.some(function(c){ return String(c).trim() !== ''; }); });
+}
+function columnRole(header){
+  var h = String(header).toLowerCase();
+  if(/(e-?mail|surel)/.test(h)) return 'email';
+  if(/(telepon|telp|phone|hp|wa|whatsapp|seluler|mobile)/.test(h)) return 'phone';
+  if(/(nama|name|pelanggan|customer|kontak)/.test(h)) return 'name';
+  if(/(kota|city|alamat|address|domisili)/.test(h)) return 'place';
+  return 'generic';
+}
+function titleCase(s){
+  return s.toLowerCase().replace(/(^|[\s\-'])([a-zà-ÿ])/g, function(m, p1, p2){ return p1 + p2.toUpperCase(); });
+}
+function cleanPhone(raw){
+  var d = String(raw).replace(/\D/g, '');
+  if(!d) return String(raw).trim();
+  if(d.charAt(0) === '0') d = '62' + d.slice(1);
+  else if(d.charAt(0) === '8') d = '62' + d;
+  else if(d.indexOf('62') !== 0) return String(raw).trim();
+  var rest = d.slice(2);
+  var parts = [];
+  if(rest.length > 3){ parts.push(rest.slice(0,3)); rest = rest.slice(3); }
+  while(rest.length > 4){ parts.push(rest.slice(0,4)); rest = rest.slice(4); }
+  if(rest) parts.push(rest);
+  return '+62 ' + parts.join('-');
+}
+function cleanData(rows, opts){
+  if(rows.length < 2) return { header: rows[0] || [], rows: [], stats: { inRows: Math.max(rows.length - 1, 0), outRows: 0, dupes: 0, fixed: 0 } };
+  var header = rows[0].map(function(h){ return String(h).trim(); });
+  var roles = header.map(columnRole);
+  var emailIdx = roles.indexOf('email');
+  var fixed = 0;
+  var body = rows.slice(1).map(function(r){
+    var out = [];
+    for(var c = 0; c < header.length; c++){
+      var v = r[c] == null ? '' : String(r[c]);
+      var orig = v;
+      if(opts.trim) v = v.replace(/\s+/g, ' ').trim();
+      var role = roles[c];
+      if(role === 'email' && opts.email) v = v.replace(/\s+/g, '').toLowerCase();
+      if(role === 'phone' && opts.phone) v = cleanPhone(v);
+      if((role === 'name' || role === 'place') && opts.case) v = titleCase(v);
+      if(v !== orig) fixed++;
+      out.push(v);
+    }
+    return out;
+  });
+  var dupes = 0, seen = {}, stage = [];
+  body.forEach(function(r){
+    if(opts.dupe){
+      var key = r.join('\u0001');
+      if(seen[key]){ dupes++; return; }
+      seen[key] = 1;
+    }
+    stage.push(r);
+  });
+  var finalRows = stage;
+  if(opts.dupeemail && emailIdx >= 0){
+    var seenE = {}, kept = [];
+    stage.forEach(function(r){
+      var e = (r[emailIdx] || '').toLowerCase();
+      if(e && seenE[e]){ dupes++; return; }
+      if(e) seenE[e] = 1;
+      kept.push(r);
+    });
+    finalRows = kept;
+  }
+  return { header: header, rows: finalRows, stats: { inRows: body.length, outRows: finalRows.length, dupes: dupes, fixed: fixed } };
+}
+function toCSV(header, rows){
+  function esc(v){
+    v = String(v == null ? '' : v);
+    return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+  return [header].concat(rows).map(function(r){ return r.map(esc).join(','); }).join('\n');
+}
+// === LOGIC END ===
+
+var SAMPLE = [
+'Nama,Email,Telepon,Kota',
+'BUDI SANTOSO,Budi.Santoso@Gmail.com,0812-3456-7890,Malang',
+'budi santoso,budi.santoso@gmail.com,081234567890,malang',
+'Siti Aminah,siti.aminah@ yahoo.com,+62 813 9876 5432,Surabaya',
+'SITI AMINAH,siti.aminah@yahoo.com,6281398765432,surabaya',
+'Agus Wijaya,AGUS.WIJAYA@GMAIL.COM,0857 1234 5678,Kediri',
+'Dewi Lestari, dewi.lestari@gmail.com ,0813-2222-3344,Malang',
+'Rina Marlina,RINA.MARLINA@GMAIL.COM,0821 4455 6677,Blitar',
+'Joko Prasetyo,joko.prasetyo@gmail.com,0812-3456-7890,Malang',
+'BUDI SANTOSO,Budi.Santoso@Gmail.com,0812-3456-7890,Malang',
+'Fitri Rahmawati,fitri.rahmawati@ gmail.com,0896-7788-9900,Batu',
+'Andi Kurniawan,ANDI.KURNIAWAN@GMAIL.COM,0812 9876 1111,Malang',
+'Sari Wulandari,sari.wulandari@gmail.com,0852-3344-5566,Surabaya',
+'Rina Marlina,rina.marlina@gmail.com,082144556677,blitar',
+'Dedi Supriadi,dedi.supriadi@GMAIL.com,0878 6655 4433,Kediri'
+].join('\n');
+
+var I18N = {
+  en: {
+    back:'← Portfolio', kicker:'LIVE DEMO — DATA CLEANING', h1:'Messy in. Clean out.',
+    lede:'This is a working miniature of my data-cleaning service. Paste a messy list — or just run the sample below — and watch duplicates, shouting-caps names, stray spaces, mixed-up emails and five different phone formats become one clean table.',
+    privacy:'100% private: everything runs in your browser. Nothing is uploaded, stored, or sent anywhere.',
+    in_h:'1 · Your messy data',
+    in_hint:'CSV or paste straight from Excel/Sheets (tabs work too). First row must be the header. Recognised columns: name, email, phone, city — everything else is trimmed and tidied.',
+    btn_sample:'Reload sample data', btn_clear:'Clear',
+    opt_h:'2 · Cleaning rules',
+    opt_trim:'Trim & collapse extra spaces',
+    opt_case:'Title-case names & cities (BUDI SANTOSO → Budi Santoso)',
+    opt_email:'Lowercase emails & remove spaces inside them',
+    opt_phone:'Normalise Indonesian phone numbers to +62 format',
+    opt_dupe:'Remove exact duplicate rows',
+    opt_dupeemail:'Remove duplicates by email (keep the first)',
+    btn_run:'Clean my data →',
+    out_h:'3 · Clean result',
+    out_empty:'Nothing here yet — press “Clean my data” and the result appears in place.',
+    btn_download:'Download cleaned CSV',
+    stat_in:'rows in', stat_out:'rows out', stat_dupe:'duplicates removed', stat_fixed:'cells fixed',
+    cta_h:'Your real data is bigger — and messier?',
+    cta_p:'This demo handles the classic mess. Real files add broken formulas, merged cells, five spellings of the same customer and duplicates that almost match. That is the part I do for a living — with a QC report, so you can prove what changed.',
+    cta_fw:'Order data cleaning on Fastwork', cta_lynk:'Templates & guides on Lynk', cta_mail:'Email me',
+    foot_l:'© 2026 Mochammad Nur Fakhruddin — Library Data Specialist, Malang, Indonesia.',
+    back2:'Back to portfolio',
+    alert_empty:'The input is empty — paste some data or reload the sample first.'
+  },
+  id: {
+    back:'← Portofolio', kicker:'DEMO LANGSUNG — DATA CLEANING', h1:'Berantakan masuk. Rapi keluar.',
+    lede:'Ini miniatur nyata dari jasa data cleaning saya. Tempel daftar berantakan Anda — atau jalankan contoh di bawah — dan lihat duplikat, nama HURUF BESAR, spasi liar, email campur aduk, dan lima format nomor HP berbeda berubah menjadi satu tabel rapi.',
+    privacy:'100% privat: semua berjalan di browser Anda. Tidak ada yang diunggah, disimpan, atau dikirim ke mana pun.',
+    in_h:'1 · Data berantakan Anda',
+    in_hint:'CSV atau tempel langsung dari Excel/Sheets (tab juga bisa). Baris pertama harus header. Kolom yang dikenali: nama, email, telepon, kota — sisanya dirapikan spasi & hurufnya.',
+    btn_sample:'Muat ulang data contoh', btn_clear:'Bersihkan',
+    opt_h:'2 · Aturan pembersihan',
+    opt_trim:'Rapikan & satukan spasi berlebih',
+    opt_case:'Samakan huruf nama & kota (BUDI SANTOSO → Budi Santoso)',
+    opt_email:'Email huruf kecil & buang spasi di dalamnya',
+    opt_phone:'Normalkan nomor HP Indonesia ke format +62',
+    opt_dupe:'Hapus baris duplikat persis',
+    opt_dupeemail:'Hapus duplikat berdasarkan email (simpan yang pertama)',
+    btn_run:'Bersihkan data saya →',
+    out_h:'3 · Hasil bersih',
+    out_empty:'Belum ada apa-apa — tekan “Bersihkan data saya” dan hasilnya muncul di sini.',
+    btn_download:'Unduh CSV hasil bersih',
+    stat_in:'baris masuk', stat_out:'baris keluar', stat_dupe:'duplikat dibuang', stat_fixed:'sel diperbaiki',
+    cta_h:'Data asli Anda lebih besar — dan lebih berantakan?',
+    cta_p:'Demo ini menangani kekacauan klasik. Berkas asli menambah rumus rusak, sel gabungan, lima ejaan untuk pelanggan yang sama, dan duplikat yang nyaris sama. Bagian itulah pekerjaan saya — lengkap dengan laporan QC, supaya Anda bisa membuktikan apa yang berubah.',
+    cta_fw:'Pesan data cleaning di Fastwork', cta_lynk:'Template & panduan di Lynk', cta_mail:'Email saya',
+    foot_l:'© 2026 Mochammad Nur Fakhruddin — Spesialis Data Perpustakaan, Malang, Indonesia.',
+    back2:'Kembali ke portofolio',
+    alert_empty:'Inputnya kosong — tempel data dulu atau muat ulang contohnya.'
+  }
+};
+var lang = 'en';
+function applyLang(l){
+  lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if(I18N[l][k]) el.textContent = I18N[l][k];
+  });
+  document.getElementById('lang-en').classList.toggle('on', l === 'en');
+  document.getElementById('lang-id').classList.toggle('on', l === 'id');
+  document.documentElement.lang = l;
+}
+document.getElementById('lang-en').addEventListener('click', function(){ applyLang('en'); });
+document.getElementById('lang-id').addEventListener('click', function(){ applyLang('id'); });
+
+var inputEl = document.getElementById('input');
+inputEl.value = SAMPLE;
+document.getElementById('btn-sample').addEventListener('click', function(){ inputEl.value = SAMPLE; });
+document.getElementById('btn-clear').addEventListener('click', function(){ inputEl.value = ''; inputEl.focus(); });
+
+var lastResult = null;
+document.getElementById('btn-run').addEventListener('click', function(){
+  var text = inputEl.value;
+  if(!text.trim()){ alert(I18N[lang].alert_empty); return; }
+  var firstLine = text.split('\n')[0] || '';
+  var rows = parseDelimited(text, detectDelimiter(firstLine));
+  var opts = {
+    trim: document.getElementById('opt-trim').checked,
+    case: document.getElementById('opt-case').checked,
+    email: document.getElementById('opt-email').checked,
+    phone: document.getElementById('opt-phone').checked,
+    dupe: document.getElementById('opt-dupe').checked,
+    dupeemail: document.getElementById('opt-dupeemail').checked
+  };
+  var res = cleanData(rows, opts);
+  lastResult = res;
+  var t = I18N[lang];
+  var stats = document.getElementById('stats');
+  stats.innerHTML =
+    '<span class="chip">' + t.stat_in + ' <b>' + res.stats.inRows + '</b></span>' +
+    '<span class="chip alt">' + t.stat_out + ' <b>' + res.stats.outRows + '</b></span>' +
+    '<span class="chip">' + t.stat_dupe + ' <b>' + res.stats.dupes + '</b></span>' +
+    '<span class="chip alt">' + t.stat_fixed + ' <b>' + res.stats.fixed + '</b></span>';
+  stats.classList.add('show');
+  var table = document.getElementById('out-table');
+  var html = '<thead><tr>' + res.header.map(function(h){ return '<th>' + h.replace(/</g,'&lt;') + '</th>'; }).join('') + '</tr></thead><tbody>';
+  res.rows.forEach(function(r){
+    html += '<tr>' + r.map(function(c){ return '<td>' + String(c).replace(/</g,'&lt;') + '</td>'; }).join('') + '</tr>';
+  });
+  table.innerHTML = html + '</tbody>';
+  document.getElementById('out-empty').style.display = 'none';
+  document.getElementById('tablebox').style.display = 'block';
+  document.getElementById('btn-download').style.display = 'inline-block';
+  document.getElementById('out-panel').scrollIntoView({ behavior:'smooth', block:'start' });
+});
+document.getElementById('btn-download').addEventListener('click', function(){
+  if(!lastResult) return;
+  var blob = new Blob([toCSV(lastResult.header, lastResult.rows)], { type:'text/csv;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'data-bersih.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+});
+</script>
+</body>
+</html>
